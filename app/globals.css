@@ -2,22 +2,154 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #000000;
+  --foreground: #00aaff;
+  --crt-blue: #00aaff;
+  --crt-blue-dim: #006699;
+  --crt-blue-glow: #00ddff;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'VT323', monospace;
+  overflow: hidden;
+}
+
+/* Scanlines effect */
+.scanlines::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Moving scanline */
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 170, 255, 0.03) 50%,
+    transparent 100%
+  );
+  height: 100px;
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 11;
+}
+
+/* CRT screen glow */
+.crt-glow {
+  box-shadow: 
+    inset 0 0 60px rgba(0, 170, 255, 0.1),
+    inset 0 0 100px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(0, 170, 255, 0.2);
+}
+
+/* CRT screen curvature illusion */
+.crt-curve {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.15) 70%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+/* CRT text effect with chromatic aberration */
+.crt-text {
+  text-shadow: 
+    -1px 0 rgba(255, 0, 0, 0.3),
+    1px 0 rgba(0, 255, 255, 0.3),
+    0 0 10px rgba(0, 170, 255, 0.5);
+}
+
+/* TV frame styling */
+.tv-frame {
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  box-shadow: 
+    10px 10px 30px rgba(0, 0, 0, 0.5),
+    -5px -5px 20px rgba(50, 50, 50, 0.1),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.05);
+}
+
+/* TV screen bezel */
+.tv-bezel {
+  background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+  box-shadow: 
+    inset 5px 5px 15px rgba(0, 0, 0, 0.8),
+    inset -2px -2px 10px rgba(50, 50, 50, 0.2);
+}
+
+/* Menu item hover effect */
+.menu-item-hover {
+  transition: all 0.1s ease;
+}
+
+.menu-item-hover:hover {
+  text-shadow: 
+    0 0 10px rgba(0, 170, 255, 0.8),
+    0 0 20px rgba(0, 170, 255, 0.5),
+    0 0 30px rgba(0, 170, 255, 0.3);
+}
+
+/* TV knob styling */
+.tv-knob {
+  background: radial-gradient(circle at 30% 30%, #444, #1a1a1a);
+  box-shadow: 
+    2px 2px 5px rgba(0, 0, 0, 0.5),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+/* CRT flicker animation class */
+.crt-flicker {
+  animation: flicker 0.15s infinite;
+}
+
+/* Screen static noise */
+.static-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
+  animation: static 0.5s steps(10) infinite;
+}
+
+/* Window border style */
+.window-border {
+  border: 2px solid rgba(0, 170, 255, 0.5);
+  box-shadow: 
+    0 0 10px rgba(0, 170, 255, 0.2),
+    inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 170, 255, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 170, 255, 0.7);
 }
 
 @layer utilities {
