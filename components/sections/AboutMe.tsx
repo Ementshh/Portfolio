@@ -17,7 +17,7 @@ export default function AboutMe() {
         <div className="flex items-center gap-6">
           <div className="flex-shrink-0">
             <Image 
-              src="/images/profile.png" 
+              src="/images/profile.webp" 
               alt="Clement Profile" 
               width={128}
               height={128}
