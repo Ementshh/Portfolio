@@ -71,21 +71,6 @@ export default function TVMenu({ activeSection, onSelect, centered = false }: TV
             </motion.button>
           ))}
         </nav>
-
-        {/* Back to home */}
-        {activeSection !== "home" && (
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            onMouseEnter={playHover}
-            onClick={() => handleClick("home")}
-            className="mt-4 pt-3 border-t text-sm md:text-base w-full text-left px-4 menu-item-hover"
-            style={{ borderColor: 'var(--window-border)', color: 'var(--crt-blue-dim)' }}
-          >
-            ◂ BACK
-          </motion.button>
-        )}
       </div>
     </motion.div>
   );

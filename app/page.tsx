@@ -86,6 +86,14 @@ function PortfolioContent() {
       <ThemeToggle />
 
       <div className="window-border backdrop-blur-sm rounded-lg w-full max-w-4xl aspect-[4/3] flex flex-col overflow-hidden relative" style={{ backgroundColor: 'var(--window-bg)' }}>
+        {/* Window title bar */}
+        <div className="flex items-center justify-between px-4 py-2 border-b" style={{ borderColor: 'var(--window-border)', backgroundColor: 'var(--title-bar-bg)' }}>
+          <div className="flex items-center gap-2">
+            <span className="text-sm crt-text" style={{ color: 'var(--crt-blue-glow)' }}>■</span>
+            <h2 className="font-bold text-sm md:text-base crt-text select-none" style={{ color: 'var(--crt-blue)' }}>HOME</h2>
+          </div>
+        </div>
+
         {/* CRT visual effects overlay */}
         <CRTOverlay />
 

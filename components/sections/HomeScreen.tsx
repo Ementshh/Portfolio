@@ -32,29 +32,6 @@ export default function HomeScreen() {
           style={{ background: 'linear-gradient(to right, transparent, var(--crt-blue), transparent)' }}
         />
       </motion.div>
-
-      {/* Decorative elements */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-4 left-4 text-xs hidden md:block"
-        style={{ color: 'var(--crt-blue-dim)' }}
-      >
-        <div>SYS: READY</div>
-        <div>MEM: OK</div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-4 right-4 text-xs hidden md:block text-right"
-        style={{ color: 'var(--crt-blue-dim)' }}
-      >
-        <div>v1.0.0</div>
-        <div>2026</div>
-      </motion.div>
     </div>
   );
 }

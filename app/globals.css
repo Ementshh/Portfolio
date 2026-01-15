@@ -15,6 +15,7 @@
   --tv-dark: #0d0d0d;
   --window-bg: rgba(0, 0, 0, 0.9);
   --window-border: rgba(0, 170, 255, 0.5);
+  --title-bar-bg: rgba(0, 170, 255, 0.15);
 }
 
 /* Light mode */
@@ -27,6 +28,7 @@
   --tv-dark: #e0e8f0;
   --window-bg: rgba(255, 255, 255, 0.95);
   --window-border: rgba(0, 119, 204, 0.5);
+  --title-bar-bg: rgba(0, 119, 204, 0.1);
 }
 
 body {

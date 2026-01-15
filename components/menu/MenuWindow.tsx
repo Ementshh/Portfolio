@@ -27,7 +27,7 @@ export default function MenuWindow({ title, isOpen, children, onClose, offset = 
           >
             <div className="window-border backdrop-blur-sm rounded-lg flex flex-col overflow-hidden max-h-[80vh]" style={{ backgroundColor: 'var(--window-bg)' }}>
               {/* Window title bar - drag handle */}
-              <div className="flex items-center justify-between px-4 py-2 border-b cursor-move" style={{ borderColor: 'var(--window-border)', backgroundColor: 'rgba(0, 170, 255, 0.05)' }}>
+              <div className="flex items-center justify-between px-4 py-2 border-b cursor-move" style={{ borderColor: 'var(--window-border)', backgroundColor: 'var(--title-bar-bg)' }}>
                 <div className="flex items-center gap-2">
                   <span className="text-sm crt-text" style={{ color: 'var(--crt-blue-glow)' }}>■</span>
                   <h2 className="font-bold text-sm md:text-base crt-text select-none" style={{ color: 'var(--crt-blue)' }}>{title}</h2>
@@ -43,7 +43,7 @@ export default function MenuWindow({ title, isOpen, children, onClose, offset = 
               </div>
 
               {/* Window content */}
-              <div className="overflow-y-auto p-4 md:p-6 cursor-default" onPointerDown={(e) => e.stopPropagation()}>
+              <div className="overflow-y-auto p-4 md:p-6 cursor-text select-text" onPointerDown={(e) => e.stopPropagation()}>
                 {children}
               </div>
 
