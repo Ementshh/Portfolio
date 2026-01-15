@@ -62,20 +62,6 @@ export default function Contact() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-        className="mt-8 p-4 window-border rounded-lg"
-        style={{ backgroundColor: 'var(--window-bg)' }}
-      >
-        <div className="text-xs mb-2" style={{ color: 'var(--crt-blue-dim)' }}>// QUICK MESSAGE</div>
-        <div className="flex items-center gap-2 text-sm">
-          <span className="animate-pulse" style={{ color: 'var(--crt-blue-glow)' }}>▮</span>
-          <span>Available for freelance work</span>
-        </div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
         transition={{ delay: 0.7 }}
         className="text-xs mt-8"
         style={{ color: 'var(--crt-blue-dim)' }}

@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 import { motion, AnimatePresence, useDragControls } from "framer-motion";
+import { useIsMobile } from "@/hooks/useMediaQuery";
 
 interface MenuWindowProps {
   title: string;
@@ -13,28 +14,57 @@ interface MenuWindowProps {
 
 export default function MenuWindow({ title, isOpen, children, onClose, offset = { x: 0, y: 0 } }: MenuWindowProps) {
   const dragControls = useDragControls();
+  const isMobile = useIsMobile();
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
+        <div className={
+          isMobile
+            ? "fixed inset-0 z-50 flex flex-col justify-end pointer-events-none"
+            : "fixed inset-0 z-50 flex items-center justify-center pointer-events-none"
+        }>
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 + offset.y, x: offset.x }}
-            animate={{ opacity: 1, scale: 1, y: offset.y, x: offset.x }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 + offset.y, x: offset.x }}
+            initial={isMobile 
+              ? { opacity: 0, y: 100 }
+              : { opacity: 0, scale: 0.9, y: 20 + offset.y, x: offset.x }
+            }
+            animate={isMobile
+              ? { opacity: 1, y: 0 }
+              : { opacity: 1, scale: 1, y: offset.y, x: offset.x }
+            }
+            exit={isMobile
+              ? { opacity: 0, y: 100 }
+              : { opacity: 0, scale: 0.9, y: 20 + offset.y, x: offset.x }
+            }
             transition={{ duration: 0.2, ease: "easeOut" }}
-            drag
+            drag={!isMobile}
             dragControls={dragControls}
             dragListener={false}
             dragMomentum={false}
-            className="max-w-[90vw] md:max-w-3xl max-h-[80vh] w-auto pointer-events-auto"
+            className={
+              isMobile
+                ? "w-full pointer-events-auto"
+                : "max-w-[90vw] md:max-w-3xl max-h-[80vh] w-auto pointer-events-auto"
+            }
+            style={isMobile ? { maxHeight: 'calc(100vh - 60px)' } : undefined}
           >
-            <div className="window-border backdrop-blur-sm rounded-lg flex flex-col overflow-hidden max-h-[80vh]" style={{ backgroundColor: 'var(--window-bg)' }}>
-              {/* Window title bar - drag handle */}
+            <div 
+              className={
+                isMobile
+                  ? "window-border backdrop-blur-sm rounded-t-lg flex flex-col overflow-hidden"
+                  : "window-border backdrop-blur-sm rounded-lg flex flex-col overflow-hidden max-h-[80vh]"
+              }
+              style={{ 
+                backgroundColor: 'var(--window-bg)',
+                maxHeight: isMobile ? 'calc(100vh - 60px)' : undefined
+              }}
+            >
+              {/* Window title bar - drag handle on desktop only */}
               <div 
-                className="flex items-center justify-between px-4 py-2 border-b cursor-move" 
+                className={`flex items-center justify-between px-4 py-2 border-b ${isMobile ? '' : 'cursor-move'}`}
                 style={{ borderColor: 'var(--window-border)', backgroundColor: 'var(--title-bar-bg)' }}
-                onPointerDown={(e) => dragControls.start(e)}
+                onPointerDown={isMobile ? undefined : (e) => dragControls.start(e)}
               >
                 <div className="flex items-center gap-2">
                   <span className="text-sm crt-text" style={{ color: 'var(--crt-blue-glow)' }}>■</span>
