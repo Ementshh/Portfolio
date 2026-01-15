@@ -4,22 +4,40 @@ import { motion } from "framer-motion";
 
 const experiences = [
   {
-    title: "Senior Software Developer",
-    company: "Tech Company Inc.",
-    period: "2024 - Present",
-    description: "Leading development of scalable web applications using React and Node.js. Mentoring junior developers and implementing best practices.",
+    title: "Human Resource Staff",
+    company: "EXERCISE FTUI",
+    period: "Jan 2025 - Jan 2026",
+    description: "Facilitated a positive organizational culture by managing member relations and orchestrating training programs that were developmental and impactful for professional growth.",
   },
   {
-    title: "Full Stack Developer",
-    company: "Digital Solutions Ltd.",
-    period: "2022 - 2024",
-    description: "Developed and maintained multiple client projects. Implemented CI/CD pipelines and improved deployment processes.",
+    title: "Marketing Director",
+    company: "EXERTION UI",
+    period: "2025",
+    description: "Directed a national-scale tech and logic competition for high school and university students. Spearheaded a strategic marketing campaign in coordination with division heads, successfully driving participation from hundreds of registrants.",
   },
   {
-    title: "Junior Developer",
-    company: "Startup Studio",
-    period: "2020 - 2022",
-    description: "Started my professional journey building web applications. Learned agile methodologies and modern development practices.",
+    title: "Science and Technology Development Staff",
+    company: "Ikatan Mahasiswa Elektro FTUI",
+    period: "2025",
+    description: "Advanced the development of science and technology within the Electrical Engineering Department by curating educational events. Collaborated with stakeholders to execute programs that fostered technical innovation and student engagement.",
+  },
+  {
+    title: "Academic Writing",
+    company: "3rd Place Winner of OIM FTUI - PKM RE",
+    period: "2025",
+    description: "Co-authored the research proposal \"Analisa Mikrobioma Tanah Berbasis Machine Learning untuk Menilai Kelayakan Tanah dan Kesehatan Tanaman.\" Conducted data analysis and presented findings to a panel of judges, securing 3rd place.",
+  },
+  {
+    title: "Cybersecurity",
+    company: "3rd Place Winner of Capture The Flag - RISTEK Universitas Indonesia",
+    period: "2025",
+    description: "Secured 3rd place by analyzing and exploiting security vulnerabilities. Specialized in solving Cryptography challenges and authored detailed writeups on the methodology used.",
+  },
+  {
+    title: "Software Development",
+    company: "2nd Runner Up of GDGoC UI Hackathon",
+    period: "2025",
+    description: "Developed a transparency platform to monitor the allocation of School Operational Funds (BOS). Engineered the solution to track financial flows, securing the 2nd Runner Up position.",
   },
 ];
 
@@ -70,7 +88,7 @@ export default function Experiences() {
         className="text-xs mt-8 border-t pt-4"
         style={{ color: 'var(--crt-blue-dim)', borderColor: 'var(--window-border)' }}
       >
-        // Career started: 2020 | Years of experience: 6+
+        // Achievements: 3 Awards | Organizations: 3 | Years: 2025-Present
       </motion.div>
     </div>
   );
