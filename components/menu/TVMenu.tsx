@@ -14,7 +14,7 @@ interface TVMenuProps {
 }
 
 const menuItems: { id: MenuSection; label: string }[] = [
-  { id: "about", label: "ABOUT ME" },
+  { id: "about", label: "ABOUT" },
   { id: "experience", label: "EXPERIENCE" },
   { id: "projects", label: "PROJECTS" },
   { id: "contact", label: "CONTACT" },
