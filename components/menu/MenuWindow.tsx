@@ -54,11 +54,6 @@ export default function MenuWindow({ title, isOpen, children, onClose, offset = 
               <div className="overflow-y-auto p-4 md:p-6 cursor-text select-text">
                 {children}
               </div>
-
-              {/* Window footer */}
-              <div className="px-4 py-2 border-t text-xs" style={{ borderColor: 'var(--window-border)', color: 'var(--crt-blue-dim)' }}>
-                <span className="animate-pulse">▮</span> SYSTEM READY
-              </div>
             </div>
           </motion.div>
         </div>

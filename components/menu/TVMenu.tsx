@@ -41,7 +41,7 @@ export default function TVMenu({ activeSection, onSelect, centered = false }: TV
     >
       <div className="window-border backdrop-blur-sm rounded-lg p-4 md:p-6 w-[280px] md:w-[420px]" style={{ backgroundColor: 'var(--window-bg)' }}>
         {/* Menu header */}
-        <div className="text-sm md:text-base mb-4 border-b pb-3 crt-text text-center" style={{ color: 'var(--crt-blue-dim)', borderColor: 'var(--window-border)' }}>
+        <div className="text-sm md:text-base mb-4 border-b pb-3 crt-text text-center font-bold" style={{ color: 'var(--crt-blue)', borderColor: 'var(--window-border)' }}>
           ▸ MENU
         </div>
 

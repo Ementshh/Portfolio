@@ -19,8 +19,8 @@ export default function HomeScreen() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.4 }}
-          className="text-lg md:text-xl lg:text-2xl mb-4"
-          style={{ color: 'var(--crt-blue-dim)' }}
+          className="text-lg md:text-xl lg:text-2xl mb-4 font-bold crt-text"
+          style={{ color: 'var(--crt-blue)' }}
         >
           Computer Engineering Student
         </motion.p>
