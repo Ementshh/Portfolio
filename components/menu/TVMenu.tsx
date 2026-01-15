@@ -9,6 +9,7 @@ export type MenuSection = "home" | "about" | "experience" | "projects" | "contac
 interface TVMenuProps {
   activeSection: MenuSection;
   onSelect: (section: MenuSection) => void;
+  centered?: boolean;
 }
 
 const menuItems: { id: MenuSection; label: string }[] = [
@@ -18,7 +19,7 @@ const menuItems: { id: MenuSection; label: string }[] = [
   { id: "contact", label: "CONTACT" },
 ];
 
-export default function TVMenu({ activeSection, onSelect }: TVMenuProps) {
+export default function TVMenu({ activeSection, onSelect, centered = false }: TVMenuProps) {
   const { playClick, playHover } = useAudio();
 
   const handleClick = (section: MenuSection) => {
@@ -28,10 +29,15 @@ export default function TVMenu({ activeSection, onSelect }: TVMenuProps) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: centered ? 20 : 0, x: centered ? 0 : -20 }}
+      animate={{ opacity: 1, y: 0, x: 0 }}
       transition={{ delay: 0.5, duration: 0.3 }}
-      className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-40"
+      className={clsx(
+        "z-40",
+        centered
+          ? "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mt-16"
+          : "absolute left-4 md:left-8 top-1/2 -translate-y-1/2"
+      )}
     >
       <div className="window-border bg-black/80 backdrop-blur-sm rounded-lg p-2 md:p-4">
         {/* Menu header */}

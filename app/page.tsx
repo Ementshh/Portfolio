@@ -70,11 +70,15 @@ function PortfolioContent() {
 
           {/* Home screen content */}
           {activeSection === "home" && (
-            <HomeScreen onNavigate={handleSectionChange} />
+            <HomeScreen />
           )}
 
           {/* Navigation menu */}
-          <TVMenu activeSection={activeSection} onSelect={handleSectionChange} />
+          <TVMenu 
+            activeSection={activeSection} 
+            onSelect={handleSectionChange} 
+            centered={activeSection === "home"}
+          />
 
           {/* Content windows */}
           <MenuWindow

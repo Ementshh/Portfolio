@@ -1,21 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useAudio } from "../audio/AudioContext";
-import { MenuSection } from "../menu/TVMenu";
 
-interface HomeScreenProps {
-  onNavigate: (section: MenuSection) => void;
-}
-
-export default function HomeScreen({ onNavigate }: HomeScreenProps) {
-  const { playHover, playClick } = useAudio();
-
-  const handleNavigate = (section: MenuSection) => {
-    playClick();
-    onNavigate(section);
-  };
-
+export default function HomeScreen() {
   return (
     <div className="h-full flex flex-col items-center justify-center text-center px-4 md:px-8">
       {/* Title */}
@@ -26,7 +13,7 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
         className="mb-8"
       >
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-crt-blue crt-text mb-4">
-          DEVELOPER
+          Hi! I&apos;m Clement
         </h1>
         <motion.div
           initial={{ width: 0 }}
@@ -34,50 +21,6 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
           transition={{ delay: 0.6, duration: 0.5 }}
           className="h-0.5 bg-gradient-to-r from-transparent via-crt-blue to-transparent"
         />
-      </motion.div>
-
-      {/* Subtitle */}
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
-        className="text-crt-blue-dim text-sm md:text-base mb-8 max-w-md"
-      >
-        Building digital experiences with clean code and creative solutions
-      </motion.p>
-
-      {/* Navigation hint */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="text-crt-blue-dim text-xs md:text-sm"
-      >
-        <span className="animate-pulse">▸</span> Select an option from the menu
-      </motion.div>
-
-      {/* Quick navigation for mobile */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.4 }}
-        className="mt-8 grid grid-cols-2 gap-3 md:hidden"
-      >
-        {[
-          { id: "about" as MenuSection, label: "ABOUT" },
-          { id: "experience" as MenuSection, label: "EXP" },
-          { id: "projects" as MenuSection, label: "PROJECTS" },
-          { id: "contact" as MenuSection, label: "CONTACT" },
-        ].map((item) => (
-          <button
-            key={item.id}
-            onMouseEnter={playHover}
-            onClick={() => handleNavigate(item.id)}
-            className="px-4 py-2 text-sm border border-crt-blue/50 rounded text-crt-blue hover:bg-crt-blue/10 hover:border-crt-blue transition-colors"
-          >
-            {item.label}
-          </button>
-        ))}
       </motion.div>
 
       {/* Decorative elements */}
