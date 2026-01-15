@@ -67,30 +67,26 @@ function PortfolioContent() {
 
         {/* Main content area */}
         <div className="flex-1 relative">
-          {/* Home screen content */}
-          {activeSection === "home" && (
-            <HomeScreen />
-          )}
+          {/* Home screen content - always visible */}
+          <HomeScreen />
 
-          {/* Navigation menu - only visible on home screen */}
-          {activeSection === "home" && (
-            <TVMenu 
-              activeSection={activeSection} 
-              onSelect={handleSectionChange} 
-              centered={true}
-            />
-          )}
-
-          {/* Content windows */}
-          <MenuWindow
-            title={getSectionTitle(activeSection)}
-            isOpen={activeSection !== "home"}
-            onClose={handleClose}
-          >
-            {renderSectionContent()}
-          </MenuWindow>
+          {/* Navigation menu - always visible */}
+          <TVMenu 
+            activeSection={activeSection} 
+            onSelect={handleSectionChange} 
+            centered={true}
+          />
         </div>
       </div>
+
+      {/* Content windows - outside the main container so they can be dragged freely */}
+      <MenuWindow
+        title={getSectionTitle(activeSection)}
+        isOpen={activeSection !== "home"}
+        onClose={handleClose}
+      >
+        {renderSectionContent()}
+      </MenuWindow>
     </main>
   );
 }
