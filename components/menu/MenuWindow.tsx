@@ -14,15 +14,16 @@ export default function MenuWindow({ title, isOpen, children, onClose }: MenuWin
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          drag
-          dragMomentum={false}
-          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 cursor-move max-w-[90vw] max-h-[80vh] w-auto"
-        >
+        <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            drag
+            dragMomentum={false}
+            className="cursor-move max-w-[90vw] max-h-[80vh] w-auto pointer-events-auto"
+          >
             <div className="window-border bg-black/90 backdrop-blur-sm rounded-lg flex flex-col overflow-hidden max-h-[80vh]">
               {/* Window title bar - drag handle */}
               <div className="flex items-center justify-between px-4 py-2 border-b border-crt-blue/30 bg-crt-blue/5 cursor-move">
@@ -50,6 +51,7 @@ export default function MenuWindow({ title, isOpen, children, onClose }: MenuWin
               </div>
             </div>
           </motion.div>
+        </div>
       )}
     </AnimatePresence>
   );
