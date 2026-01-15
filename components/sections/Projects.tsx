@@ -102,7 +102,7 @@ export default function Projects() {
         className="text-xs mt-8"
         style={{ color: 'var(--crt-blue-dim)' }}
       >
-        // Click on a project to view more details
+        {/* Click on a project to view more details */}
       </motion.div>
     </div>
   );

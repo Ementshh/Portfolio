@@ -66,7 +66,7 @@ export default function Contact() {
         className="text-xs mt-8"
         style={{ color: 'var(--crt-blue-dim)' }}
       >
-        // Response time: Usually within 24 hours
+        {/* Response time: Usually within 24 hours */}
       </motion.div>
     </div>
   );

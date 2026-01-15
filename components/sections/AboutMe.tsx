@@ -128,7 +128,7 @@ export default function AboutMe() {
         className="text-xs mt-8"
         style={{ color: 'var(--crt-blue-dim)' }}
       >
-        // Last updated: 2026
+        {/* Last updated: 2026 */}
       </motion.div>
     </div>
   );

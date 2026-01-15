@@ -88,7 +88,7 @@ export default function Experiences() {
         className="text-xs mt-8 border-t pt-4"
         style={{ color: 'var(--crt-blue-dim)', borderColor: 'var(--window-border)' }}
       >
-        // Achievements: 3 Awards | Organizations: 3 | Years: 2025-Present
+        {/* Achievements: 3 Awards | Organizations: 3 | Years: 2025-Present */}
       </motion.div>
     </div>
   );
