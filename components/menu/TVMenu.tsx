@@ -10,6 +10,7 @@ interface TVMenuProps {
   activeSection: MenuSection;
   onSelect: (section: MenuSection) => void;
   centered?: boolean;
+  isMobile?: boolean;
 }
 
 const menuItems: { id: MenuSection; label: string }[] = [
@@ -19,7 +20,7 @@ const menuItems: { id: MenuSection; label: string }[] = [
   { id: "contact", label: "CONTACT" },
 ];
 
-export default function TVMenu({ activeSection, onSelect, centered = false }: TVMenuProps) {
+export default function TVMenu({ activeSection, onSelect, centered = false, isMobile = false }: TVMenuProps) {
   const { playClick, playHover } = useAudio();
 
   const handleClick = (section: MenuSection) => {
@@ -34,12 +35,17 @@ export default function TVMenu({ activeSection, onSelect, centered = false }: TV
       transition={{ delay: 0.5, duration: 0.3 }}
       className={clsx(
         "z-40",
-        centered
-          ? "absolute inset-x-0 top-[45%] flex justify-center"
-          : "absolute left-4 md:left-8 top-1/2 -translate-y-1/2"
+        isMobile
+          ? "relative flex justify-center"
+          : centered
+            ? "absolute inset-x-0 top-[45%] flex justify-center"
+            : "absolute left-4 md:left-8 top-1/2 -translate-y-1/2"
       )}
     >
-      <div className="window-border backdrop-blur-sm rounded-lg p-4 md:p-6 w-[280px] md:w-[420px]" style={{ backgroundColor: 'var(--window-bg)' }}>
+      <div className={clsx(
+        "backdrop-blur-sm rounded-lg p-4 md:p-6 w-[280px] md:w-[420px]",
+        !isMobile && "window-border"
+      )} style={{ backgroundColor: isMobile ? 'transparent' : 'var(--window-bg)' }}>
         {/* Menu header */}
         <div className="text-sm md:text-base mb-4 border-b pb-3 crt-text text-center font-bold" style={{ color: 'var(--crt-blue)', borderColor: 'var(--window-border)' }}>
           ▸ MENU

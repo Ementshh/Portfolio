@@ -2,9 +2,17 @@
 
 import { motion } from "framer-motion";
 
-export default function HomeScreen() {
+interface HomeScreenProps {
+  isMobile?: boolean;
+}
+
+export default function HomeScreen({ isMobile = false }: HomeScreenProps) {
   return (
-    <div className="h-full flex flex-col items-center text-center px-4 md:px-8 pt-24 md:pt-32">
+    <div className={
+      isMobile 
+        ? "flex flex-col items-center text-center px-4 mb-8" 
+        : "h-full flex flex-col items-center text-center px-4 md:px-8 pt-24 md:pt-32"
+    }>
       {/* Title */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}

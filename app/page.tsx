@@ -13,10 +13,12 @@ import { AudioProvider, useAudio } from "@/components/audio/AudioContext";
 import MuteButton from "@/components/audio/MuteButton";
 import { ThemeProvider } from "@/components/theme/ThemeContext";
 import ThemeToggle from "@/components/theme/ThemeToggle";
+import { useIsMobile } from "@/hooks/useMediaQuery";
 
 function PortfolioContent() {
   const [openSections, setOpenSections] = useState<Set<MenuSection>>(new Set());
   const { playOpen, playClose } = useAudio();
+  const isMobile = useIsMobile();
 
   const handleSectionChange = useCallback((section: MenuSection) => {
     if (section === "home") {
@@ -85,31 +87,48 @@ function PortfolioContent() {
       {/* Theme toggle - next to mute button */}
       <ThemeToggle />
 
-      <div className="window-border backdrop-blur-sm rounded-lg w-full max-w-4xl aspect-[4/3] flex flex-col overflow-hidden relative" style={{ backgroundColor: 'var(--window-bg)' }}>
-        {/* Window title bar */}
-        <div className="flex items-center justify-between px-4 py-2 border-b" style={{ borderColor: 'var(--window-border)', backgroundColor: 'var(--title-bar-bg)' }}>
-          <div className="flex items-center gap-2">
-            <span className="text-sm crt-text" style={{ color: 'var(--crt-blue-glow)' }}>■</span>
-            <h2 className="font-bold text-sm md:text-base crt-text select-none" style={{ color: 'var(--crt-blue)' }}>HOME</h2>
-          </div>
-        </div>
+      {/* Mobile layout - simplified without CRT frame */}
+      {isMobile ? (
+        <div className="w-full h-screen flex flex-col items-center justify-center relative">
+          {/* Home screen content */}
+          <HomeScreen isMobile={true} />
 
-        {/* CRT visual effects overlay */}
-        <CRTOverlay />
-
-        {/* Main content area */}
-        <div className="flex-1 relative">
-          {/* Home screen content - always visible */}
-          <HomeScreen />
-
-          {/* Navigation menu - always visible */}
+          {/* Navigation menu */}
           <TVMenu 
             activeSection={activeSection} 
             onSelect={handleSectionChange} 
             centered={true}
+            isMobile={true}
           />
         </div>
-      </div>
+      ) : (
+        /* Desktop layout - full CRT frame */
+        <div className="window-border backdrop-blur-sm rounded-lg w-full max-w-4xl aspect-[4/3] flex flex-col overflow-hidden relative" style={{ backgroundColor: 'var(--window-bg)' }}>
+          {/* Window title bar */}
+          <div className="flex items-center justify-between px-4 py-2 border-b" style={{ borderColor: 'var(--window-border)', backgroundColor: 'var(--title-bar-bg)' }}>
+            <div className="flex items-center gap-2">
+              <span className="text-sm crt-text" style={{ color: 'var(--crt-blue-glow)' }}>■</span>
+              <h2 className="font-bold text-sm md:text-base crt-text select-none" style={{ color: 'var(--crt-blue)' }}>HOME</h2>
+            </div>
+          </div>
+
+          {/* CRT visual effects overlay */}
+          <CRTOverlay />
+
+          {/* Main content area */}
+          <div className="flex-1 relative">
+            {/* Home screen content - always visible */}
+            <HomeScreen />
+
+            {/* Navigation menu - always visible */}
+            <TVMenu 
+              activeSection={activeSection} 
+              onSelect={handleSectionChange} 
+              centered={true}
+            />
+          </div>
+        </div>
+      )}
 
       {/* Content windows - outside the main container so they can be dragged freely */}
       {(["about", "experience", "projects", "contact"] as const).map((section, index) => (
