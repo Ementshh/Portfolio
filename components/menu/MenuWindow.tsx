@@ -19,7 +19,7 @@ export default function MenuWindow({ title, isOpen, children, onClose }: MenuWin
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
-          className="absolute inset-4 md:inset-8 md:left-52 lg:left-60 z-30"
+          className="absolute inset-4 md:inset-8 z-30"
         >
           <div className="window-border bg-black/90 backdrop-blur-sm rounded-lg h-full flex flex-col overflow-hidden">
             {/* Window title bar */}

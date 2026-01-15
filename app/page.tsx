@@ -73,12 +73,14 @@ function PortfolioContent() {
             <HomeScreen />
           )}
 
-          {/* Navigation menu */}
-          <TVMenu 
-            activeSection={activeSection} 
-            onSelect={handleSectionChange} 
-            centered={activeSection === "home"}
-          />
+          {/* Navigation menu - only visible on home screen */}
+          {activeSection === "home" && (
+            <TVMenu 
+              activeSection={activeSection} 
+              onSelect={handleSectionChange} 
+              centered={true}
+            />
+          )}
 
           {/* Content windows */}
           <MenuWindow
