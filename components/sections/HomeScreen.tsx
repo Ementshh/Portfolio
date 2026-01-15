@@ -20,8 +20,11 @@ export default function HomeScreen({ isMobile = false }: HomeScreenProps) {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="mb-4"
       >
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold crt-text mb-2" style={{ color: 'var(--crt-blue)' }}>
-          Hi! I&apos;m Clement
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-2" style={{ color: 'var(--crt-blue)' }}>
+          Hi! I&apos;m{" "}
+          <span className="crt-text font-black" style={{ color: 'var(--crt-blue-glow)' }}>
+            Clement
+          </span>
         </h1>
         <motion.p
           initial={{ opacity: 0 }}
