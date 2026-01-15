@@ -1,8 +1,6 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import CRTFrame from "@/components/crt/CRTFrame";
-import CRTScreen from "@/components/crt/CRTScreen";
 import CRTOverlay from "@/components/crt/CRTOverlay";
 import TVMenu, { MenuSection } from "@/components/menu/TVMenu";
 import MenuWindow from "@/components/menu/MenuWindow";
@@ -60,14 +58,15 @@ function PortfolioContent() {
 
   return (
     <main className="min-h-screen flex items-center justify-center p-4 md:p-8 bg-black">
-      <CRTFrame>
-        <CRTScreen>
-          {/* Mute button */}
-          <MuteButton />
+      <div className="window-border bg-black/90 backdrop-blur-sm rounded-lg w-full max-w-4xl aspect-[4/3] flex flex-col overflow-hidden relative">
+        {/* Mute button */}
+        <MuteButton />
 
-          {/* CRT visual effects overlay */}
-          <CRTOverlay />
+        {/* CRT visual effects overlay */}
+        <CRTOverlay />
 
+        {/* Main content area */}
+        <div className="flex-1 relative">
           {/* Home screen content */}
           {activeSection === "home" && (
             <HomeScreen />
@@ -90,8 +89,8 @@ function PortfolioContent() {
           >
             {renderSectionContent()}
           </MenuWindow>
-        </CRTScreen>
-      </CRTFrame>
+        </div>
+      </div>
     </main>
   );
 }
