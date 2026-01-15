@@ -13,7 +13,7 @@
   --crt-blue-dim: #006699;
   --crt-blue-glow: #00ddff;
   --tv-dark: #0d0d0d;
-  --window-bg: rgba(0, 0, 0, 0.9);
+  --window-bg: #000000;
   --window-border: rgba(0, 170, 255, 0.5);
   --title-bar-bg: rgba(0, 170, 255, 0.15);
 }
@@ -26,7 +26,7 @@
   --crt-blue-dim: #004488;
   --crt-blue-glow: #0099dd;
   --tv-dark: #e0e8f0;
-  --window-bg: rgba(255, 255, 255, 0.95);
+  --window-bg: #ffffff;
   --window-border: rgba(0, 119, 204, 0.5);
   --title-bar-bg: rgba(0, 119, 204, 0.1);
 }
