@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { useAudio } from "../audio/AudioContext";
 
 const contactLinks = [
-  { label: "EMAIL", value: "hello@example.com", href: "mailto:hello@example.com" },
-  { label: "GITHUB", value: "github.com/username", href: "https://github.com" },
-  { label: "LINKEDIN", value: "linkedin.com/in/username", href: "https://linkedin.com" },
-  { label: "TWITTER", value: "@username", href: "https://twitter.com" },
+  { label: "EMAIL", value: "clementheobenaya@gmail.com", href: "mailto:clementheobenaya@gmail.com" },
+  { label: "GITHUB", value: "https://github.com/Ementshh", href: "https://github.com/Ementshh" },
+  { label: "LINKEDIN", value: "www.linkedin.com/in/clementheo-benaya-b521b4315", href: "https://www.linkedin.com/in/clementheo-benaya-b521b4315" },
+  { label: "LINE", value: "ccllmmnntt", href: "#" },
 ];
 
 export default function Contact() {
@@ -39,8 +39,7 @@ export default function Contact() {
           <motion.a
             key={index}
             href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
+            {...(link.href.startsWith('mailto:') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 + index * 0.1 }}
