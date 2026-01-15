@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function AboutMe() {
   return (
-    <div className="text-crt-blue space-y-6">
+    <div className="space-y-6" style={{ color: 'var(--crt-blue)' }}>
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -13,7 +13,7 @@ export default function AboutMe() {
         <h3 className="text-xl md:text-2xl font-bold crt-text mb-4">
           ▸ ABOUT ME
         </h3>
-        <div className="border-l-2 border-crt-blue/50 pl-4 space-y-4">
+        <div className="border-l-2 pl-4 space-y-4" style={{ borderColor: 'var(--window-border)' }}>
           <p className="text-sm md:text-base leading-relaxed">
             Hello! I&apos;m a passionate software developer with a love for building 
             elegant solutions to complex problems. I specialize in full-stack 
@@ -50,7 +50,7 @@ export default function AboutMe() {
               transition={{ delay: 0.3 + i * 0.05 }}
               className="flex items-center gap-2"
             >
-              <span className="text-crt-blue-glow">▪</span>
+              <span style={{ color: 'var(--crt-blue-glow)' }}>▪</span>
               <span>{skill}</span>
             </motion.div>
           ))}
@@ -61,7 +61,8 @@ export default function AboutMe() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="text-crt-blue-dim text-xs mt-8"
+        className="text-xs mt-8"
+        style={{ color: 'var(--crt-blue-dim)' }}
       >
         // Last updated: 2026
       </motion.div>

@@ -11,6 +11,8 @@ import Projects from "@/components/sections/Projects";
 import Contact from "@/components/sections/Contact";
 import { AudioProvider, useAudio } from "@/components/audio/AudioContext";
 import MuteButton from "@/components/audio/MuteButton";
+import { ThemeProvider } from "@/components/theme/ThemeContext";
+import ThemeToggle from "@/components/theme/ThemeToggle";
 
 function PortfolioContent() {
   const [openSections, setOpenSections] = useState<Set<MenuSection>>(new Set());
@@ -77,11 +79,13 @@ function PortfolioContent() {
     : "home";
 
   return (
-    <main className="min-h-screen flex items-center justify-center p-4 md:p-8 bg-black relative">
+    <main className="min-h-screen flex items-center justify-center p-4 md:p-8 relative" style={{ backgroundColor: 'var(--background)' }}>
       {/* Mute button - fixed to top left of screen */}
       <MuteButton />
+      {/* Theme toggle - next to mute button */}
+      <ThemeToggle />
 
-      <div className="window-border bg-black/90 backdrop-blur-sm rounded-lg w-full max-w-4xl aspect-[4/3] flex flex-col overflow-hidden relative">
+      <div className="window-border backdrop-blur-sm rounded-lg w-full max-w-4xl aspect-[4/3] flex flex-col overflow-hidden relative" style={{ backgroundColor: 'var(--window-bg)' }}>
         {/* CRT visual effects overlay */}
         <CRTOverlay />
 
@@ -117,8 +121,10 @@ function PortfolioContent() {
 
 export default function Home() {
   return (
-    <AudioProvider>
-      <PortfolioContent />
-    </AudioProvider>
+    <ThemeProvider>
+      <AudioProvider>
+        <PortfolioContent />
+      </AudioProvider>
+    </ThemeProvider>
   );
 }

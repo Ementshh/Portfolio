@@ -25,17 +25,18 @@ export default function MenuWindow({ title, isOpen, children, onClose, offset = 
             dragMomentum={false}
             className="cursor-move max-w-[90vw] md:max-w-3xl max-h-[80vh] w-auto pointer-events-auto"
           >
-            <div className="window-border bg-black/90 backdrop-blur-sm rounded-lg flex flex-col overflow-hidden max-h-[80vh]">
+            <div className="window-border backdrop-blur-sm rounded-lg flex flex-col overflow-hidden max-h-[80vh]" style={{ backgroundColor: 'var(--window-bg)' }}>
               {/* Window title bar - drag handle */}
-              <div className="flex items-center justify-between px-4 py-2 border-b border-crt-blue/30 bg-crt-blue/5 cursor-move">
+              <div className="flex items-center justify-between px-4 py-2 border-b cursor-move" style={{ borderColor: 'var(--window-border)', backgroundColor: 'rgba(0, 170, 255, 0.05)' }}>
                 <div className="flex items-center gap-2">
-                  <span className="text-crt-blue-glow text-sm crt-text">■</span>
-                  <h2 className="text-crt-blue font-bold text-sm md:text-base crt-text select-none">{title}</h2>
+                  <span className="text-sm crt-text" style={{ color: 'var(--crt-blue-glow)' }}>■</span>
+                  <h2 className="font-bold text-sm md:text-base crt-text select-none" style={{ color: 'var(--crt-blue)' }}>{title}</h2>
                 </div>
                 <button
                   onClick={onClose}
                   onPointerDown={(e) => e.stopPropagation()}
-                  className="text-crt-blue hover:text-crt-blue-glow transition-colors text-xl leading-none px-2 cursor-pointer"
+                  className="transition-colors text-xl leading-none px-2 cursor-pointer"
+                  style={{ color: 'var(--crt-blue)' }}
                 >
                   ×
                 </button>
@@ -47,7 +48,7 @@ export default function MenuWindow({ title, isOpen, children, onClose, offset = 
               </div>
 
               {/* Window footer */}
-              <div className="px-4 py-2 border-t border-crt-blue/30 text-crt-blue-dim text-xs">
+              <div className="px-4 py-2 border-t text-xs" style={{ borderColor: 'var(--window-border)', color: 'var(--crt-blue-dim)' }}>
                 <span className="animate-pulse">▮</span> SYSTEM READY
               </div>
             </div>

@@ -14,7 +14,7 @@ export default function Contact() {
   const { playHover, playClick } = useAudio();
 
   return (
-    <div className="text-crt-blue space-y-6">
+    <div className="space-y-6" style={{ color: 'var(--crt-blue)' }}>
       <motion.h3
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -27,7 +27,8 @@ export default function Contact() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.1 }}
-        className="text-sm md:text-base leading-relaxed border-l-2 border-crt-blue/50 pl-4"
+        className="text-sm md:text-base leading-relaxed border-l-2 pl-4"
+        style={{ borderColor: 'var(--window-border)' }}
       >
         I&apos;m always open to discussing new projects, creative ideas, or opportunities 
         to be part of your vision. Feel free to reach out through any of the channels below.
@@ -46,13 +47,13 @@ export default function Contact() {
             whileHover={{ x: 10 }}
             onMouseEnter={playHover}
             onClick={playClick}
-            className="flex items-center gap-4 p-3 rounded-lg hover:bg-crt-blue/5 transition-colors group"
+            className="flex items-center gap-4 p-3 rounded-lg transition-colors group"
           >
-            <span className="text-crt-blue-dim text-xs w-20">{link.label}</span>
-            <span className="text-crt-blue group-hover:text-crt-blue-glow transition-colors">
+            <span className="text-xs w-20" style={{ color: 'var(--crt-blue-dim)' }}>{link.label}</span>
+            <span className="transition-colors" style={{ color: 'var(--crt-blue)' }}>
               {link.value}
             </span>
-            <span className="text-crt-blue-glow opacity-0 group-hover:opacity-100 transition-opacity ml-auto">
+            <span className="opacity-0 group-hover:opacity-100 transition-opacity ml-auto" style={{ color: 'var(--crt-blue-glow)' }}>
               ▸
             </span>
           </motion.a>
@@ -63,12 +64,13 @@ export default function Contact() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6 }}
-        className="mt-8 p-4 window-border rounded-lg bg-black/50"
+        className="mt-8 p-4 window-border rounded-lg"
+        style={{ backgroundColor: 'var(--window-bg)' }}
       >
-        <div className="text-crt-blue-dim text-xs mb-2">// QUICK MESSAGE</div>
+        <div className="text-xs mb-2" style={{ color: 'var(--crt-blue-dim)' }}>// QUICK MESSAGE</div>
         <div className="flex items-center gap-2 text-sm">
-          <span className="text-crt-blue-glow animate-pulse">▮</span>
-          <span className="text-crt-blue">Available for freelance work</span>
+          <span className="animate-pulse" style={{ color: 'var(--crt-blue-glow)' }}>▮</span>
+          <span>Available for freelance work</span>
         </div>
       </motion.div>
 
@@ -76,7 +78,8 @@ export default function Contact() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.7 }}
-        className="text-crt-blue-dim text-xs mt-8"
+        className="text-xs mt-8"
+        style={{ color: 'var(--crt-blue-dim)' }}
       >
         // Response time: Usually within 24 hours
       </motion.div>

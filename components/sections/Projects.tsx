@@ -34,7 +34,7 @@ export default function Projects() {
   const { playHover, playClick } = useAudio();
 
   return (
-    <div className="text-crt-blue space-y-6">
+    <div className="space-y-6" style={{ color: 'var(--crt-blue)' }}>
       <motion.h3
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -54,14 +54,15 @@ export default function Projects() {
             whileHover={{ scale: 1.02, x: 5 }}
             onMouseEnter={playHover}
             onClick={playClick}
-            className="block window-border bg-black/50 rounded-lg p-4 hover:bg-crt-blue/5 transition-colors cursor-pointer"
+            className="block window-border rounded-lg p-4 transition-colors cursor-pointer"
+            style={{ backgroundColor: 'var(--window-bg)' }}
           >
             <div className="flex items-start justify-between mb-2">
               <h4 className="text-base md:text-lg font-bold crt-text">{project.name}</h4>
-              <span className="text-crt-blue-glow text-sm">▸</span>
+              <span className="text-sm" style={{ color: 'var(--crt-blue-glow)' }}>▸</span>
             </div>
             
-            <p className="text-sm text-crt-blue/70 mb-3">
+            <p className="text-sm mb-3" style={{ opacity: 0.7 }}>
               {project.description}
             </p>
             
@@ -69,7 +70,8 @@ export default function Projects() {
               {project.tech.map((tech, i) => (
                 <span
                   key={i}
-                  className="text-xs px-2 py-1 bg-crt-blue/10 border border-crt-blue/30 rounded"
+                  className="text-xs px-2 py-1 border rounded"
+                  style={{ borderColor: 'var(--window-border)', backgroundColor: 'rgba(0, 170, 255, 0.1)' }}
                 >
                   {tech}
                 </span>
@@ -83,7 +85,8 @@ export default function Projects() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6 }}
-        className="text-crt-blue-dim text-xs mt-8"
+        className="text-xs mt-8"
+        style={{ color: 'var(--crt-blue-dim)' }}
       >
         // Click on a project to view more details
       </motion.div>

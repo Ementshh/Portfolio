@@ -39,9 +39,9 @@ export default function TVMenu({ activeSection, onSelect, centered = false }: TV
           : "absolute left-4 md:left-8 top-1/2 -translate-y-1/2"
       )}
     >
-      <div className="window-border bg-black/80 backdrop-blur-sm rounded-lg p-4 md:p-6 w-[280px] md:w-[420px]">
+      <div className="window-border backdrop-blur-sm rounded-lg p-4 md:p-6 w-[280px] md:w-[420px]" style={{ backgroundColor: 'var(--window-bg)' }}>
         {/* Menu header */}
-        <div className="text-crt-blue-dim text-sm md:text-base mb-4 border-b border-crt-blue/30 pb-3 crt-text text-center">
+        <div className="text-sm md:text-base mb-4 border-b pb-3 crt-text text-center" style={{ color: 'var(--crt-blue-dim)', borderColor: 'var(--window-border)' }}>
           ▸ MENU
         </div>
 
@@ -58,9 +58,13 @@ export default function TVMenu({ activeSection, onSelect, centered = false }: TV
               className={clsx(
                 "text-left px-4 py-3 text-base md:text-xl transition-all menu-item-hover rounded",
                 activeSection === item.id
-                  ? "text-crt-blue-glow bg-crt-blue/10 crt-text"
-                  : "text-crt-blue hover:text-crt-blue-glow hover:bg-crt-blue/5"
+                  ? "crt-text"
+                  : ""
               )}
+              style={{ 
+                color: activeSection === item.id ? 'var(--crt-blue-glow)' : 'var(--crt-blue)',
+                backgroundColor: activeSection === item.id ? 'rgba(0, 170, 255, 0.1)' : 'transparent'
+              }}
             >
               <span className="mr-3">▸</span>
               {item.label}
@@ -76,7 +80,8 @@ export default function TVMenu({ activeSection, onSelect, centered = false }: TV
             transition={{ delay: 0.8 }}
             onMouseEnter={playHover}
             onClick={() => handleClick("home")}
-            className="mt-4 pt-3 border-t border-crt-blue/30 text-crt-blue-dim hover:text-crt-blue text-sm md:text-base w-full text-left px-4 menu-item-hover"
+            className="mt-4 pt-3 border-t text-sm md:text-base w-full text-left px-4 menu-item-hover"
+            style={{ borderColor: 'var(--window-border)', color: 'var(--crt-blue-dim)' }}
           >
             ◂ BACK
           </motion.button>

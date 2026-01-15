@@ -12,14 +12,15 @@ export default function HomeScreen() {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="mb-4"
       >
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-crt-blue crt-text mb-2">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold crt-text mb-2" style={{ color: 'var(--crt-blue)' }}>
           Hi! I&apos;m Clement
         </h1>
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.4 }}
-          className="text-lg md:text-xl lg:text-2xl text-crt-blue-dim mb-4"
+          className="text-lg md:text-xl lg:text-2xl mb-4"
+          style={{ color: 'var(--crt-blue-dim)' }}
         >
           Computer Engineering Student
         </motion.p>
@@ -27,7 +28,8 @@ export default function HomeScreen() {
           initial={{ width: 0 }}
           animate={{ width: "100%" }}
           transition={{ delay: 0.7, duration: 0.5 }}
-          className="h-0.5 bg-gradient-to-r from-transparent via-crt-blue to-transparent"
+          className="h-0.5"
+          style={{ background: 'linear-gradient(to right, transparent, var(--crt-blue), transparent)' }}
         />
       </motion.div>
 
@@ -36,7 +38,8 @@ export default function HomeScreen() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.3 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-4 left-4 text-crt-blue-dim text-xs hidden md:block"
+        className="absolute bottom-4 left-4 text-xs hidden md:block"
+        style={{ color: 'var(--crt-blue-dim)' }}
       >
         <div>SYS: READY</div>
         <div>MEM: OK</div>
@@ -46,7 +49,8 @@ export default function HomeScreen() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.3 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-4 right-4 text-crt-blue-dim text-xs hidden md:block text-right"
+        className="absolute bottom-4 right-4 text-xs hidden md:block text-right"
+        style={{ color: 'var(--crt-blue-dim)' }}
       >
         <div>v1.0.0</div>
         <div>2026</div>

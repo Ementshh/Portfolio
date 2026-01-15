@@ -16,7 +16,12 @@ export default function MuteButton() {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
       onClick={handleClick}
-      className="fixed top-4 left-4 z-50 w-10 h-10 flex items-center justify-center rounded-full bg-tv-dark border-2 border-crt-blue/30 text-crt-blue hover:border-crt-blue/60 transition-colors"
+      className="fixed top-4 left-4 z-50 w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors"
+      style={{ 
+        backgroundColor: 'var(--tv-dark)', 
+        borderColor: 'var(--window-border)',
+        color: 'var(--crt-blue)'
+      }}
       title={isMuted ? "Unmute" : "Mute"}
     >
       {isMuted ? (

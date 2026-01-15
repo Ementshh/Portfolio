@@ -9,14 +9,6 @@ export default function CRTOverlay() {
       {/* Subtle static noise */}
       <div className="absolute inset-0 static-noise opacity-[0.02] pointer-events-none z-25" />
       
-      {/* Vignette effect */}
-      <div 
-        className="absolute inset-0 pointer-events-none z-20"
-        style={{
-          background: "radial-gradient(ellipse at center, transparent 0%, transparent 60%, rgba(0,0,0,0.4) 100%)"
-        }}
-      />
-      
       {/* Screen reflection */}
       <div 
         className="absolute inset-0 pointer-events-none z-35 opacity-[0.03]"
