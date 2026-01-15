@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function AboutMe() {
   return (
@@ -15,9 +16,11 @@ export default function AboutMe() {
         </h3>
         <div className="flex items-center gap-6">
           <div className="flex-shrink-0">
-            <img 
+            <Image 
               src="/images/profile.png" 
               alt="Clement Profile" 
+              width={128}
+              height={128}
               className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-2"
               style={{ borderColor: 'var(--window-border)' }}
             />
