@@ -51,7 +51,6 @@ export default function MenuWindow({ title, isOpen, children, onClose, offset = 
                 ? "w-full h-full pointer-events-auto"
                 : "max-w-[90vw] md:max-w-3xl max-h-[80vh] w-auto pointer-events-auto"
             }
-            onMouseDown={onWindowClick}
           >
             <div 
               className={
@@ -60,12 +59,16 @@ export default function MenuWindow({ title, isOpen, children, onClose, offset = 
                   : "window-border backdrop-blur-sm rounded-lg flex flex-col overflow-hidden max-h-[80vh]"
               }
               style={{ backgroundColor: 'var(--window-bg)' }}
+              onPointerDown={onWindowClick}
             >
               {/* Window title bar - drag handle on desktop only */}
               <div 
                 className={`flex items-center justify-between px-4 py-2 border-b ${isMobile ? '' : 'cursor-move'}`}
                 style={{ borderColor: 'var(--window-border)', backgroundColor: 'var(--title-bar-bg)' }}
-                onPointerDown={isMobile ? undefined : (e) => dragControls.start(e)}
+                onPointerDown={isMobile ? undefined : (e) => {
+                  onWindowClick?.();
+                  dragControls.start(e);
+                }}
               >
                 <div className="flex items-center gap-2">
                   <span className="text-sm crt-text" style={{ color: 'var(--crt-blue-glow)' }}>■</span>
