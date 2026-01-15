@@ -20,14 +20,25 @@ type WindowSection = Exclude<MenuSection, "home">;
 function PortfolioContent() {
   const [openSections, setOpenSections] = useState<Set<MenuSection>>(new Set());
   const [windowZIndices, setWindowZIndices] = useState<Record<WindowSection, number>>({
-    about: 1,
-    experience: 2,
-    projects: 3,
-    contact: 4,
+    about: 50,
+    experience: 50,
+    projects: 50,
+    contact: 50,
   });
-  const [maxZIndex, setMaxZIndex] = useState(4);
+  const [topZIndex, setTopZIndex] = useState(50);
   const { playOpen, playClose } = useAudio();
   const isMobile = useIsMobile();
+
+  const bringToFront = useCallback((section: WindowSection) => {
+    setTopZIndex(prev => {
+      const newZ = prev + 1;
+      setWindowZIndices(prevZ => ({
+        ...prevZ,
+        [section]: newZ,
+      }));
+      return newZ;
+    });
+  }, []);
 
   const handleSectionChange = useCallback((section: MenuSection) => {
     if (section === "home") {
@@ -43,11 +54,13 @@ function PortfolioContent() {
         } else {
           playOpen();
           newSet.add(section);
+          // Bring newly opened window to top
+          bringToFront(section as WindowSection);
         }
         return newSet;
       });
     }
-  }, [playOpen, playClose]);
+  }, [playOpen, playClose, bringToFront]);
 
   const handleClose = useCallback((section: MenuSection) => {
     playClose();
@@ -59,12 +72,8 @@ function PortfolioContent() {
   }, [playClose]);
 
   const handleWindowClick = useCallback((section: WindowSection) => {
-    setMaxZIndex(prev => prev + 1);
-    setWindowZIndices(prev => ({
-      ...prev,
-      [section]: prev[section] + 1000,
-    }));
-  }, []);
+    bringToFront(section);
+  }, [bringToFront]);
 
   const getSectionTitle = (section: MenuSection): string => {
     const titles: Record<MenuSection, string> = {
@@ -155,7 +164,7 @@ function PortfolioContent() {
           isOpen={openSections.has(section)}
           onClose={() => handleClose(section)}
           offset={{ x: index * 30 - 45, y: index * 30 - 45 }}
-          zIndex={50 + windowZIndices[section]}
+          zIndex={windowZIndices[section]}
           onWindowClick={() => handleWindowClick(section)}
         >
           {renderSectionContent(section)}
