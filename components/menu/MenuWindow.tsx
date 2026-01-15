@@ -21,10 +21,9 @@ export default function MenuWindow({ title, isOpen, children, onClose }: MenuWin
           transition={{ duration: 0.2, ease: "easeOut" }}
           drag
           dragMomentum={false}
-          className="fixed inset-4 md:inset-8 lg:inset-16 xl:inset-24 z-50 cursor-move"
-          style={{ width: 'auto', height: 'auto' }}
+          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 cursor-move max-w-[90vw] max-h-[80vh] w-auto"
         >
-            <div className="window-border bg-black/90 backdrop-blur-sm rounded-lg h-full flex flex-col overflow-hidden">
+            <div className="window-border bg-black/90 backdrop-blur-sm rounded-lg flex flex-col overflow-hidden max-h-[80vh]">
               {/* Window title bar - drag handle */}
               <div className="flex items-center justify-between px-4 py-2 border-b border-crt-blue/30 bg-crt-blue/5 cursor-move">
                 <div className="flex items-center gap-2">
@@ -41,7 +40,7 @@ export default function MenuWindow({ title, isOpen, children, onClose }: MenuWin
               </div>
 
               {/* Window content */}
-              <div className="flex-1 overflow-y-auto p-4 md:p-6 cursor-default" onPointerDown={(e) => e.stopPropagation()}>
+              <div className="overflow-y-auto p-4 md:p-6 cursor-default" onPointerDown={(e) => e.stopPropagation()}>
                 {children}
               </div>
 
