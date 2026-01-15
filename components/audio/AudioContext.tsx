@@ -85,7 +85,7 @@ const createCloseSound = (audioCtx: AudioContext) => {
 };
 
 export function AudioProvider({ children }: { children: ReactNode }) {
-  const [isMuted, setIsMuted] = useState(true); // Start muted by default
+  const [isMuted, setIsMuted] = useState(false); // Start with sound enabled by default
   const [audioCtx, setAudioCtx] = useState<AudioContext | null>(null);
 
   useEffect(() => {
