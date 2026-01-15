@@ -47,13 +47,18 @@ export default function Projects() {
 
   return (
     <div className="space-y-6" style={{ color: 'var(--crt-blue)' }}>
-      <motion.h3
+      <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-xl md:text-2xl font-bold crt-text mb-6"
+        className="flex items-baseline gap-3 mb-6"
       >
-        ▸ PROJECTS
-      </motion.h3>
+        <h3 className="text-xl md:text-2xl font-bold crt-text">
+          ▸ PROJECTS
+        </h3>
+        <span className="text-xs font-medium" style={{ opacity: 1 }}>
+          Click for more details!
+        </span>
+      </motion.div>
 
       <div className="grid gap-4">
         {projects.map((project, index) => (
