@@ -15,9 +15,11 @@ import { ThemeProvider } from "@/components/theme/ThemeContext";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 import { useIsMobile } from "@/hooks/useMediaQuery";
 
+type WindowSection = Exclude<MenuSection, "home">;
+
 function PortfolioContent() {
   const [openSections, setOpenSections] = useState<Set<MenuSection>>(new Set());
-  const [windowZIndices, setWindowZIndices] = useState<Record<MenuSection, number>>({
+  const [windowZIndices, setWindowZIndices] = useState<Record<WindowSection, number>>({
     about: 1,
     experience: 2,
     projects: 3,
@@ -56,7 +58,7 @@ function PortfolioContent() {
     });
   }, [playClose]);
 
-  const handleWindowClick = useCallback((section: MenuSection) => {
+  const handleWindowClick = useCallback((section: WindowSection) => {
     setMaxZIndex(prev => prev + 1);
     setWindowZIndices(prev => ({
       ...prev,
