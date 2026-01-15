@@ -12,13 +12,21 @@ export default function HomeScreen() {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="mb-4"
       >
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-crt-blue crt-text mb-4">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-crt-blue crt-text mb-2">
           Hi! I&apos;m Clement
         </h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.4 }}
+          className="text-lg md:text-xl lg:text-2xl text-crt-blue-dim mb-4"
+        >
+          Computer Engineering Student
+        </motion.p>
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: "100%" }}
-          transition={{ delay: 0.6, duration: 0.5 }}
+          transition={{ delay: 0.7, duration: 0.5 }}
           className="h-0.5 bg-gradient-to-r from-transparent via-crt-blue to-transparent"
         />
       </motion.div>

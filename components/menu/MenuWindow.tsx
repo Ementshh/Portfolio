@@ -8,21 +8,22 @@ interface MenuWindowProps {
   isOpen: boolean;
   children: ReactNode;
   onClose: () => void;
+  offset?: { x: number; y: number };
 }
 
-export default function MenuWindow({ title, isOpen, children, onClose }: MenuWindowProps) {
+export default function MenuWindow({ title, isOpen, children, onClose, offset = { x: 0, y: 0 } }: MenuWindowProps) {
   return (
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.9, y: 20 + offset.y, x: offset.x }}
+            animate={{ opacity: 1, scale: 1, y: offset.y, x: offset.x }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 + offset.y, x: offset.x }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             drag
             dragMomentum={false}
-            className="cursor-move max-w-[90vw] max-h-[80vh] w-auto pointer-events-auto"
+            className="cursor-move max-w-[90vw] md:max-w-3xl max-h-[80vh] w-auto pointer-events-auto"
           >
             <div className="window-border bg-black/90 backdrop-blur-sm rounded-lg flex flex-col overflow-hidden max-h-[80vh]">
               {/* Window title bar - drag handle */}

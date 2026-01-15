@@ -84,65 +84,9 @@ const createCloseSound = (audioCtx: AudioContext) => {
   oscillator.stop(audioCtx.currentTime + 0.08);
 };
 
-// CRT Hum generator
-class CRTHum {
-  private audioCtx: AudioContext | null = null;
-  private oscillator: OscillatorNode | null = null;
-  private gainNode: GainNode | null = null;
-  private isPlaying = false;
-
-  start() {
-    if (this.isPlaying || typeof window === 'undefined') return;
-    
-    this.audioCtx = new (window.AudioContext || (window as typeof window & { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
-    this.oscillator = this.audioCtx.createOscillator();
-    this.gainNode = this.audioCtx.createGain();
-    
-    // Create a low hum sound (60Hz like CRT refresh)
-    this.oscillator.type = 'sine';
-    this.oscillator.frequency.setValueAtTime(60, this.audioCtx.currentTime);
-    
-    // Very quiet
-    this.gainNode.gain.setValueAtTime(0.015, this.audioCtx.currentTime);
-    
-    this.oscillator.connect(this.gainNode);
-    this.gainNode.connect(this.audioCtx.destination);
-    
-    this.oscillator.start();
-    this.isPlaying = true;
-  }
-
-  stop() {
-    if (!this.isPlaying) return;
-    
-    if (this.oscillator) {
-      this.oscillator.stop();
-      this.oscillator.disconnect();
-    }
-    if (this.gainNode) {
-      this.gainNode.disconnect();
-    }
-    if (this.audioCtx) {
-      this.audioCtx.close();
-    }
-    
-    this.oscillator = null;
-    this.gainNode = null;
-    this.audioCtx = null;
-    this.isPlaying = false;
-  }
-
-  setVolume(volume: number) {
-    if (this.gainNode && this.audioCtx) {
-      this.gainNode.gain.setValueAtTime(volume, this.audioCtx.currentTime);
-    }
-  }
-}
-
 export function AudioProvider({ children }: { children: ReactNode }) {
   const [isMuted, setIsMuted] = useState(true); // Start muted by default
   const [audioCtx, setAudioCtx] = useState<AudioContext | null>(null);
-  const [crtHum] = useState(() => new CRTHum());
 
   useEffect(() => {
     // Initialize audio context on first user interaction
@@ -156,16 +100,6 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     window.addEventListener('click', initAudio, { once: true });
     return () => window.removeEventListener('click', initAudio);
   }, [audioCtx]);
-
-  useEffect(() => {
-    if (!isMuted) {
-      crtHum.start();
-    } else {
-      crtHum.stop();
-    }
-
-    return () => crtHum.stop();
-  }, [isMuted, crtHum]);
 
   const toggleMute = useCallback(() => {
     setIsMuted(prev => !prev);

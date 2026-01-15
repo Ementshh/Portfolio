@@ -13,21 +13,36 @@ import { AudioProvider, useAudio } from "@/components/audio/AudioContext";
 import MuteButton from "@/components/audio/MuteButton";
 
 function PortfolioContent() {
-  const [activeSection, setActiveSection] = useState<MenuSection>("home");
+  const [openSections, setOpenSections] = useState<Set<MenuSection>>(new Set());
   const { playOpen, playClose } = useAudio();
 
   const handleSectionChange = useCallback((section: MenuSection) => {
     if (section === "home") {
+      // Close all sections
       playClose();
+      setOpenSections(new Set());
     } else {
-      playOpen();
+      setOpenSections(prev => {
+        const newSet = new Set(prev);
+        if (newSet.has(section)) {
+          playClose();
+          newSet.delete(section);
+        } else {
+          playOpen();
+          newSet.add(section);
+        }
+        return newSet;
+      });
     }
-    setActiveSection(section);
   }, [playOpen, playClose]);
 
-  const handleClose = useCallback(() => {
+  const handleClose = useCallback((section: MenuSection) => {
     playClose();
-    setActiveSection("home");
+    setOpenSections(prev => {
+      const newSet = new Set(prev);
+      newSet.delete(section);
+      return newSet;
+    });
   }, [playClose]);
 
   const getSectionTitle = (section: MenuSection): string => {
@@ -41,8 +56,8 @@ function PortfolioContent() {
     return titles[section];
   };
 
-  const renderSectionContent = () => {
-    switch (activeSection) {
+  const renderSectionContent = (section: MenuSection) => {
+    switch (section) {
       case "about":
         return <AboutMe />;
       case "experience":
@@ -56,12 +71,17 @@ function PortfolioContent() {
     }
   };
 
-  return (
-    <main className="min-h-screen flex items-center justify-center p-4 md:p-8 bg-black">
-      <div className="window-border bg-black/90 backdrop-blur-sm rounded-lg w-full max-w-4xl aspect-[4/3] flex flex-col overflow-hidden relative">
-        {/* Mute button */}
-        <MuteButton />
+  // Get active section for menu highlighting (last opened or home)
+  const activeSection: MenuSection = openSections.size > 0 
+    ? Array.from(openSections)[openSections.size - 1] 
+    : "home";
 
+  return (
+    <main className="min-h-screen flex items-center justify-center p-4 md:p-8 bg-black relative">
+      {/* Mute button - fixed to top left of screen */}
+      <MuteButton />
+
+      <div className="window-border bg-black/90 backdrop-blur-sm rounded-lg w-full max-w-4xl aspect-[4/3] flex flex-col overflow-hidden relative">
         {/* CRT visual effects overlay */}
         <CRTOverlay />
 
@@ -80,13 +100,17 @@ function PortfolioContent() {
       </div>
 
       {/* Content windows - outside the main container so they can be dragged freely */}
-      <MenuWindow
-        title={getSectionTitle(activeSection)}
-        isOpen={activeSection !== "home"}
-        onClose={handleClose}
-      >
-        {renderSectionContent()}
-      </MenuWindow>
+      {(["about", "experience", "projects", "contact"] as const).map((section, index) => (
+        <MenuWindow
+          key={section}
+          title={getSectionTitle(section)}
+          isOpen={openSections.has(section)}
+          onClose={() => handleClose(section)}
+          offset={{ x: index * 30 - 45, y: index * 30 - 45 }}
+        >
+          {renderSectionContent(section)}
+        </MenuWindow>
+      ))}
     </main>
   );
 }
