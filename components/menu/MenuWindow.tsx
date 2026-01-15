@@ -51,7 +51,7 @@ export default function MenuWindow({ title, isOpen, children, onClose, offset = 
             <div 
               className={
                 isMobile
-                  ? "window-border backdrop-blur-sm rounded-t-lg flex flex-col overflow-hidden h-full"
+                  ? "window-border rounded-t-lg flex flex-col overflow-hidden h-full"
                   : "window-border backdrop-blur-sm rounded-lg flex flex-col overflow-hidden max-h-[80vh]"
               }
               style={{ backgroundColor: 'var(--window-bg)' }}

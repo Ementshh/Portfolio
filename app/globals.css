@@ -222,3 +222,39 @@ body {
 [data-theme="light"] ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 119, 204, 0.6);
 }
+
+/* Mobile performance optimizations */
+@media (max-width: 767px) {
+  /* Disable expensive animations on mobile */
+  .scanlines::before,
+  .scanlines::after {
+    display: none;
+  }
+  
+  .static-noise {
+    display: none;
+  }
+  
+  /* Simplify box shadows */
+  .window-border {
+    box-shadow: 0 0 5px rgba(0, 170, 255, 0.2);
+  }
+  
+  [data-theme="light"] .window-border {
+    box-shadow: 0 2px 10px rgba(0, 100, 150, 0.1);
+  }
+  
+  /* Simplify text shadows for better performance */
+  .crt-text {
+    text-shadow: 0 0 5px rgba(0, 170, 255, 0.4);
+  }
+  
+  .menu-item-hover:hover {
+    text-shadow: 0 0 8px rgba(0, 170, 255, 0.6);
+  }
+  
+  /* Disable CRT glow effects */
+  .crt-glow {
+    box-shadow: none;
+  }
+}

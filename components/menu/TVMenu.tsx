@@ -43,8 +43,8 @@ export default function TVMenu({ activeSection, onSelect, centered = false, isMo
       )}
     >
       <div className={clsx(
-        "backdrop-blur-sm rounded-lg p-4 md:p-6 w-[280px] md:w-[420px]",
-        !isMobile && "window-border"
+        "rounded-lg p-4 md:p-6 w-[280px] md:w-[420px]",
+        !isMobile && "window-border backdrop-blur-sm"
       )} style={{ backgroundColor: isMobile ? 'transparent' : 'var(--window-bg)' }}>
         {/* Menu header */}
         <div className="text-sm md:text-base mb-4 border-b pb-3 crt-text text-center font-bold" style={{ color: 'var(--crt-blue)', borderColor: 'var(--window-border)' }}>
