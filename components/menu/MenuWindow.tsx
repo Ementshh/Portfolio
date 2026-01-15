@@ -10,9 +10,11 @@ interface MenuWindowProps {
   children: ReactNode;
   onClose: () => void;
   offset?: { x: number; y: number };
+  zIndex?: number;
+  onWindowClick?: () => void;
 }
 
-export default function MenuWindow({ title, isOpen, children, onClose, offset = { x: 0, y: 0 } }: MenuWindowProps) {
+export default function MenuWindow({ title, isOpen, children, onClose, offset = { x: 0, y: 0 }, zIndex = 50, onWindowClick }: MenuWindowProps) {
   const dragControls = useDragControls();
   const isMobile = useIsMobile();
 
@@ -22,8 +24,10 @@ export default function MenuWindow({ title, isOpen, children, onClose, offset = 
         <div className={
           isMobile
             ? "fixed inset-0 z-50 flex flex-col pt-16 pointer-events-none"
-            : "fixed inset-0 z-50 flex items-center justify-center pointer-events-none"
-        }>
+            : "fixed inset-0 flex items-center justify-center pointer-events-none"
+        }
+        style={{ zIndex }}
+        >
           <motion.div
             initial={isMobile 
               ? { opacity: 0, y: 100 }
@@ -47,6 +51,7 @@ export default function MenuWindow({ title, isOpen, children, onClose, offset = 
                 ? "w-full h-full pointer-events-auto"
                 : "max-w-[90vw] md:max-w-3xl max-h-[80vh] w-auto pointer-events-auto"
             }
+            onMouseDown={onWindowClick}
           >
             <div 
               className={

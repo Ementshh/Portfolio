@@ -17,6 +17,13 @@ import { useIsMobile } from "@/hooks/useMediaQuery";
 
 function PortfolioContent() {
   const [openSections, setOpenSections] = useState<Set<MenuSection>>(new Set());
+  const [windowZIndices, setWindowZIndices] = useState<Record<MenuSection, number>>({
+    about: 1,
+    experience: 2,
+    projects: 3,
+    contact: 4,
+  });
+  const [maxZIndex, setMaxZIndex] = useState(4);
   const { playOpen, playClose } = useAudio();
   const isMobile = useIsMobile();
 
@@ -48,6 +55,14 @@ function PortfolioContent() {
       return newSet;
     });
   }, [playClose]);
+
+  const handleWindowClick = useCallback((section: MenuSection) => {
+    setMaxZIndex(prev => prev + 1);
+    setWindowZIndices(prev => ({
+      ...prev,
+      [section]: prev[section] + 1000,
+    }));
+  }, []);
 
   const getSectionTitle = (section: MenuSection): string => {
     const titles: Record<MenuSection, string> = {
@@ -138,6 +153,8 @@ function PortfolioContent() {
           isOpen={openSections.has(section)}
           onClose={() => handleClose(section)}
           offset={{ x: index * 30 - 45, y: index * 30 - 45 }}
+          zIndex={50 + windowZIndices[section]}
+          onWindowClick={() => handleWindowClick(section)}
         >
           {renderSectionContent(section)}
         </MenuWindow>
