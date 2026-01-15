@@ -4,13 +4,13 @@ import { motion } from "framer-motion";
 
 export default function HomeScreen() {
   return (
-    <div className="h-full flex flex-col items-center justify-center text-center px-4 md:px-8">
+    <div className="h-full flex flex-col items-center text-center px-4 md:px-8 pt-24 md:pt-32">
       {/* Title */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.5 }}
-        className="mb-8"
+        className="mb-4"
       >
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-crt-blue crt-text mb-4">
           Hi! I&apos;m Clement

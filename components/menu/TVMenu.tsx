@@ -35,18 +35,18 @@ export default function TVMenu({ activeSection, onSelect, centered = false }: TV
       className={clsx(
         "z-40",
         centered
-          ? "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mt-16"
+          ? "absolute inset-x-0 top-[45%] flex justify-center"
           : "absolute left-4 md:left-8 top-1/2 -translate-y-1/2"
       )}
     >
-      <div className="window-border bg-black/80 backdrop-blur-sm rounded-lg p-2 md:p-4">
+      <div className="window-border bg-black/80 backdrop-blur-sm rounded-lg p-4 md:p-6 w-[280px] md:w-[420px]">
         {/* Menu header */}
-        <div className="text-crt-blue-dim text-xs md:text-sm mb-3 border-b border-crt-blue/30 pb-2 crt-text">
+        <div className="text-crt-blue-dim text-sm md:text-base mb-4 border-b border-crt-blue/30 pb-3 crt-text text-center">
           ▸ MENU
         </div>
 
         {/* Menu items */}
-        <nav className="flex flex-col gap-1">
+        <nav className="grid grid-cols-2 gap-2">
           {menuItems.map((item, index) => (
             <motion.button
               key={item.id}
@@ -56,15 +56,13 @@ export default function TVMenu({ activeSection, onSelect, centered = false }: TV
               onMouseEnter={playHover}
               onClick={() => handleClick(item.id)}
               className={clsx(
-                "text-left px-3 py-2 text-sm md:text-lg transition-all menu-item-hover rounded",
+                "text-left px-4 py-3 text-base md:text-xl transition-all menu-item-hover rounded",
                 activeSection === item.id
                   ? "text-crt-blue-glow bg-crt-blue/10 crt-text"
                   : "text-crt-blue hover:text-crt-blue-glow hover:bg-crt-blue/5"
               )}
             >
-              <span className="mr-2">
-                {activeSection === item.id ? "▸" : " "}
-              </span>
+              <span className="mr-3">▸</span>
               {item.label}
             </motion.button>
           ))}
@@ -78,7 +76,7 @@ export default function TVMenu({ activeSection, onSelect, centered = false }: TV
             transition={{ delay: 0.8 }}
             onMouseEnter={playHover}
             onClick={() => handleClick("home")}
-            className="mt-4 pt-3 border-t border-crt-blue/30 text-crt-blue-dim hover:text-crt-blue text-xs md:text-sm w-full text-left px-3 menu-item-hover"
+            className="mt-4 pt-3 border-t border-crt-blue/30 text-crt-blue-dim hover:text-crt-blue text-sm md:text-base w-full text-left px-4 menu-item-hover"
           >
             ◂ BACK
           </motion.button>
