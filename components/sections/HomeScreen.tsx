@@ -10,7 +10,7 @@ export default function HomeScreen({ isMobile = false }: HomeScreenProps) {
   return (
     <div className={
       isMobile 
-        ? "flex flex-col items-center text-center px-4 mb-8" 
+        ? "flex flex-col items-center text-center px-4" 
         : "h-full flex flex-col items-center text-center px-4 md:px-8 pt-24 md:pt-32"
     }>
       {/* Title */}

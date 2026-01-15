@@ -21,7 +21,7 @@ export default function MenuWindow({ title, isOpen, children, onClose, offset = 
       {isOpen && (
         <div className={
           isMobile
-            ? "fixed inset-0 z-50 flex flex-col justify-end pointer-events-none"
+            ? "fixed inset-0 z-50 flex flex-col pt-16 pointer-events-none"
             : "fixed inset-0 z-50 flex items-center justify-center pointer-events-none"
         }>
           <motion.div
@@ -44,21 +44,17 @@ export default function MenuWindow({ title, isOpen, children, onClose, offset = 
             dragMomentum={false}
             className={
               isMobile
-                ? "w-full pointer-events-auto"
+                ? "w-full h-full pointer-events-auto"
                 : "max-w-[90vw] md:max-w-3xl max-h-[80vh] w-auto pointer-events-auto"
             }
-            style={isMobile ? { maxHeight: 'calc(100vh - 60px)' } : undefined}
           >
             <div 
               className={
                 isMobile
-                  ? "window-border backdrop-blur-sm rounded-t-lg flex flex-col overflow-hidden"
+                  ? "window-border backdrop-blur-sm rounded-t-lg flex flex-col overflow-hidden h-full"
                   : "window-border backdrop-blur-sm rounded-lg flex flex-col overflow-hidden max-h-[80vh]"
               }
-              style={{ 
-                backgroundColor: 'var(--window-bg)',
-                maxHeight: isMobile ? 'calc(100vh - 60px)' : undefined
-              }}
+              style={{ backgroundColor: 'var(--window-bg)' }}
             >
               {/* Window title bar - drag handle on desktop only */}
               <div 
