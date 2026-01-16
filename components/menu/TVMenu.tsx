@@ -62,10 +62,10 @@ export default function TVMenu({ activeSection, onSelect, centered = false, isMo
               onMouseEnter={playHover}
               onClick={() => handleClick(item.id)}
               className={clsx(
-                "text-left px-4 py-3 text-base md:text-xl transition-all menu-item-hover rounded cursor-pointer border-2 border-transparent hover:border-current",
+                "text-left px-4 py-3 text-base md:text-xl transition-all menu-item-hover rounded",
                 activeSection === item.id
-                  ? "crt-text border-current"
-                  : "hover:crt-text"
+                  ? "crt-text"
+                  : ""
               )}
               style={{ 
                 color: activeSection === item.id ? 'var(--crt-blue-glow)' : 'var(--crt-blue)',

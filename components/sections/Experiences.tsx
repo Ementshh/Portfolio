@@ -25,7 +25,7 @@ const experiences = [
     title: "Academic Writing",
     company: "3rd Place Winner of OIM FTUI - PKM RE",
     period: "2025",
-    description: "Co-authored the research proposal \"Analisa Mikrobioma Tanah Berbasis Machine Learning untuk Menilai Kelayakan Tanah dan Kesehatan Tanaman.\" Conducted data analysis and presented findings to a panel of judges, securing 3rd place.",
+    description: "Co-authored the research proposal \"Analisa Mikrobioma Tanah Berbasis Machine Learning untuk Menilai Kelayakan Tanah dan Kesehatan Tanaman.\" Arranged research methods and presented findings to a panel of judges, securing 3rd place.",
   },
   {
     title: "Cybersecurity",
