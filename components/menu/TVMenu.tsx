@@ -48,7 +48,7 @@ export default function TVMenu({ activeSection, onSelect, centered = false, isMo
       )} style={{ backgroundColor: isMobile ? 'transparent' : 'var(--window-bg)' }}>
         {/* Menu header */}
         <div className="text-sm md:text-base mb-4 border-b pb-3 crt-text text-center font-bold" style={{ color: 'var(--crt-blue)', borderColor: 'var(--window-border)' }}>
-          ▸ MENU
+          MENU
         </div>
 
         {/* Menu items */}
@@ -62,10 +62,10 @@ export default function TVMenu({ activeSection, onSelect, centered = false, isMo
               onMouseEnter={playHover}
               onClick={() => handleClick(item.id)}
               className={clsx(
-                "text-left px-4 py-3 text-base md:text-xl transition-all menu-item-hover rounded",
+                "text-left px-4 py-3 text-base md:text-xl transition-all menu-item-hover rounded cursor-pointer border-2 border-transparent hover:border-current",
                 activeSection === item.id
-                  ? "crt-text"
-                  : ""
+                  ? "crt-text border-current"
+                  : "hover:crt-text"
               )}
               style={{ 
                 color: activeSection === item.id ? 'var(--crt-blue-glow)' : 'var(--crt-blue)',
