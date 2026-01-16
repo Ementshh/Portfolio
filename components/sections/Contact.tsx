@@ -7,7 +7,7 @@ const contactLinks = [
   { label: "EMAIL", value: "clementheobenaya@gmail.com", href: "mailto:clementheobenaya@gmail.com" },
   { label: "GITHUB", value: "https://github.com/Ementshh", href: "https://github.com/Ementshh" },
   { label: "LINKEDIN", value: "www.linkedin.com/in/clementheo-benaya-b521b4315", href: "https://www.linkedin.com/in/clementheo-benaya-b521b4315" },
-  { label: "LINE", value: "ccllmmnntt", href: "#" },
+  { label: "LINE", value: "ccllmmnntt", href: "https://line.me/R/ti/p/ccllmmnntt" },
 ];
 
 export default function Contact() {
