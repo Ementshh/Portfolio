@@ -27,7 +27,7 @@ export default function AboutMe() {
           </div>
           <div className="border-l-2 pl-4 flex-1" style={{ borderColor: 'var(--window-border)' }}>
             <p className="text-sm md:text-base leading-relaxed">
-              A Computer Engineering student at Universitas Indonesia with a passion 
+              Hi!, I'm <span className="font-bold" style={{ color: 'var(--crt-blue-glow)' }}>Clementheo Benaya Raya</span>, a Computer Engineering student at Universitas Indonesia with a passion 
               for Cybersecurity, Game Development, Networking, and anything that runs 
               on electricity.
             </p>
