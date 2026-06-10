@@ -11,6 +11,18 @@ const projects = [
     link: "https://ement.itch.io/labuboom",
   },
   {
+    name: "Rummikub Online",
+    tech: ["Java", "LibGDX", "SpringBoot"],
+    description: "An Online Multiplayer version of the board game \"Rummikub\" Created entirely in Java with the LibGDX Framework with a SpringBoot Backend. Created in one month as part of a challenge.",
+    link: "https://ement.itch.io/rummikub-online",
+  },
+  {
+    name: "Multi-Stadium Football Topology Simulation",
+    tech: ["Cisco Packet Tracer", "Network Design", "WAN", "Dynamic Routing"],
+    description: "A Cisco Packet Tracer network simulation implementing Wide Area Network, DHCP, Dynamic Routing Protocol, Etherchannel, and other concepts to model a multi-stadium football network. Created in one month as part of a challenge.",
+    link: "https://drive.google.com/drive/u/0/folders/1YSc3dZDZV7nIzJryeq1jgG4ZLF0V4YMm",
+  },
+  {
     name: "Enterprise Network Topology Simulation",
     tech: ["Cisco Packet Tracer", "Network Design"],
     description: "A comprehensive Cisco Packet Tracer network simulation implementing VLAN trunking, EtherChannel, and dynamic routing to model a scalable enterprise infrastructure. Part of the Computer Networks practicum.",

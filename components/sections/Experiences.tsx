@@ -4,6 +4,12 @@ import { motion } from "framer-motion";
 
 const experiences = [
   {
+    title: "Head of Human Resources",
+    company: "EXERCISE FTUI",
+    period: "Jan 2026 - Present",
+    description: "Directed end-to-end HR workflows at EXERCISE FTUI, managing recruitment, performance standards, and large-scale engagement events to sustain the quality and alignment of 80+ active members.",
+  },
+  {
     title: "Human Resource Staff",
     company: "EXERCISE FTUI",
     period: "Jan 2025 - Jan 2026",

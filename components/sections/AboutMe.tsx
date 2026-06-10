@@ -33,6 +33,27 @@ export default function AboutMe() {
             </p>
           </div>
         </div>
+        <motion.a
+          href="https://drive.google.com/file/d/1ZQz1clvqMBZYaxXo6in8iQacxc9zLnLG/view?usp=drive_link"
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ opacity: 0, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25 }}
+          whileHover={{ scale: 1.04, x: 3 }}
+          className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded border text-sm font-bold transition-colors cursor-pointer"
+          style={{
+            borderColor: 'var(--crt-blue-glow)',
+            color: 'var(--crt-blue-glow)',
+            backgroundColor: 'rgba(0, 170, 255, 0.08)',
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 16L7 11H10V4H14V11H17L12 16Z" fill="currentColor"/>
+            <path d="M5 18H19V20H5V18Z" fill="currentColor"/>
+          </svg>
+          Download CV
+        </motion.a>
       </motion.div>
 
       <motion.div
