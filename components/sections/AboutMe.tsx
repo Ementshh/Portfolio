@@ -34,7 +34,7 @@ export default function AboutMe() {
           </div>
         </div>
         <motion.a
-          href="https://drive.google.com/file/d/1ZQz1clvqMBZYaxXo6in8iQacxc9zLnLG/view?usp=drive_link"
+          href="https://drive.google.com/file/d/1O_DcG_RsBriKre5JzWBfy-0i9aD0laBH/view?usp=drive_link"
           target="_blank"
           rel="noopener noreferrer"
           initial={{ opacity: 0, y: 5 }}
