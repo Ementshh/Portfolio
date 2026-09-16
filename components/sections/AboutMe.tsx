@@ -71,7 +71,7 @@ export default function AboutMe() {
               <p className="font-bold">Universitas Indonesia</p>
               <p className="text-sm" style={{ color: 'var(--crt-blue-dim)' }}>2024 - Present</p>
               <p className="text-sm">Bachelor of Computer Engineering</p>
-              <p className="text-sm">GPA: 3.85</p>
+              <p className="text-sm">GPA: 3.79</p>
             </div>
           </div>
           <div className="flex items-start gap-3">

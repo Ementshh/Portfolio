@@ -45,6 +45,12 @@ const experiences = [
     period: "2025",
     description: "Developed a transparency platform to monitor the allocation of School Operational Funds (BOS). Engineered the solution to track financial flows, securing the 2nd Runner Up position.",
   },
+  {
+    title: "Laboratory Assistant",
+    company: "Netlab FTUI",
+    period: "July 2026 - Present",
+    description: "Served as Vice Person in Charge for the International Program Network Management Design practicum by overseeing laboratory operations and supervising weekly sessions. Designed and structured comprehensive practicum module materials to align with curriculum standards. Formulated preliminary assignments, practical case studies, and supplementary tasks to evaluate student technical comprehension. Provided direct technical guidance to students during practicum sessions to ensure the successful execution of experiments.",
+  },
 ];
 
 export default function Experiences() {
