@@ -4,6 +4,12 @@ import { motion } from "framer-motion";
 
 const experiences = [
   {
+    title: "Laboratory Assistant",
+    company: "Netlab FTUI",
+    period: "July 2026 - Present",
+    description: "Vice Person in Charge for the International Program Design and Management of Computer Networks practicum. Oversaw laboratory operations, supervised weekly sessions, and designed module materials, assignments, and case studies. Provided direct technical guidance to students during experiments.",
+  },
+  {
     title: "Head of Human Resources",
     company: "EXERCISE FTUI",
     period: "Jan 2026 - Present",
@@ -44,12 +50,6 @@ const experiences = [
     company: "2nd Runner Up of GDGoC UI Hackathon",
     period: "2025",
     description: "Developed a transparency platform to monitor the allocation of School Operational Funds (BOS). Engineered the solution to track financial flows, securing the 2nd Runner Up position.",
-  },
-  {
-    title: "Laboratory Assistant",
-    company: "Netlab FTUI",
-    period: "July 2026 - Present",
-    description: "Served as Vice Person in Charge for the International Program Network Management Design practicum by overseeing laboratory operations and supervising weekly sessions. Designed and structured comprehensive practicum module materials to align with curriculum standards. Formulated preliminary assignments, practical case studies, and supplementary tasks to evaluate student technical comprehension. Provided direct technical guidance to students during practicum sessions to ensure the successful execution of experiments.",
   },
 ];
 
