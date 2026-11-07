@@ -1,13 +1,5 @@
 import type { Metadata } from "next";
-import { VT323 } from "next/font/google";
 import "./globals.css";
-
-const vt323 = VT323({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-vt323",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Clement's desktop",
@@ -23,8 +15,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={vt323.variable}>
-      <body className={`${vt323.className} font-crt bg-black min-h-screen`}>{children}</body>
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
+      <body className="font-crt bg-black min-h-screen">{children}</body>
     </html>
   );
 }

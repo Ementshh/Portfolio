@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 /* Dark mode (default) */
 :root,
 [data-theme="dark"] {
@@ -32,9 +34,26 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-vt323), 'VT323', monospace;
+  font-family: 'VT323', monospace;
   overflow: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@keyframes crt-scanline {
+  0% {
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    transform: translate3d(0, 100vh, 0);
+  }
+}
+
+@keyframes crt-static {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  20% { transform: translate3d(-40px, 20px, 0); }
+  40% { transform: translate3d(30px, -35px, 0); }
+  60% { transform: translate3d(-25px, -15px, 0); }
+  80% { transform: translate3d(35px, 25px, 0); }
 }
 
 /* Scanlines effect */
@@ -44,10 +63,10 @@ body {
   inset: 0;
   background: repeating-linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.15),
-    rgba(0, 0, 0, 0.15) 1px,
-    transparent 1px,
-    transparent 2px
+    rgba(0, 0, 0, 0.35) 0px,
+    rgba(0, 0, 0, 0.35) 1px,
+    rgba(0, 170, 255, 0.03) 1px,
+    rgba(0, 170, 255, 0.03) 3px
   );
   pointer-events: none;
   z-index: 10;
@@ -57,15 +76,17 @@ body {
 .scanlines::after {
   content: "";
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(0, 170, 255, 0.03) 50%,
+    rgba(0, 170, 255, 0.05) 50%,
     transparent 100%
   );
-  height: 100px;
-  animation: scanline 8s linear infinite;
+  height: 120px;
+  animation: crt-scanline 8s linear infinite;
   pointer-events: none;
   z-index: 11;
   will-change: transform;
@@ -74,9 +95,8 @@ body {
 /* CRT screen glow */
 .crt-glow {
   box-shadow: 
-    inset 0 0 60px rgba(0, 170, 255, 0.1),
-    inset 0 0 100px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(0, 170, 255, 0.2);
+    inset 0 0 60px rgba(0, 170, 255, 0.12),
+    inset 0 0 120px rgba(0, 0, 0, 0.45);
 }
 
 /* CRT screen curvature illusion */
@@ -84,8 +104,9 @@ body {
   background: radial-gradient(
     ellipse at center,
     transparent 0%,
-    rgba(0, 0, 0, 0.15) 70%,
-    rgba(0, 0, 0, 0.4) 100%
+    transparent 55%,
+    rgba(0, 0, 0, 0.25) 80%,
+    rgba(0, 0, 0, 0.55) 100%
   );
 }
 
@@ -139,10 +160,17 @@ body {
   animation: flicker 0.15s infinite;
 }
 
-/* Screen static noise - static background without heavy 10fps repaint loop */
+/* Screen static noise - GPU-composited tiled texture shifted via translate3d */
 .static-noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
+  position: absolute;
+  inset: -60px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 160px 160px;
+  animation: crt-static 0.4s steps(5) infinite;
   pointer-events: none;
+  z-index: 12;
+  will-change: transform;
 }
 
 /* Window border style */
@@ -207,7 +235,11 @@ body {
 
 [data-theme="light"] .crt-glow {
   box-shadow: 
-    0 4px 20px rgba(0, 100, 150, 0.1);
+    inset 0 0 50px rgba(0, 100, 150, 0.1);
+}
+
+[data-theme="light"] .crt-curve {
+  background: none;
 }
 
 [data-theme="light"] ::-webkit-scrollbar-track {
@@ -222,14 +254,9 @@ body {
   background: rgba(0, 119, 204, 0.6);
 }
 
-/* Mobile performance optimizations */
+/* Mobile performance optimizations: keep static CRT scanlines & vignette, disable continuous animations */
 @media (max-width: 767px) {
-  /* Disable expensive animations on mobile */
-  .scanlines::before,
-  .scanlines::after {
-    display: none;
-  }
-  
+  .scanlines::after,
   .static-noise {
     display: none;
   }
@@ -252,8 +279,8 @@ body {
     text-shadow: 0 0 8px rgba(0, 170, 255, 0.6);
   }
   
-  /* Disable CRT glow effects */
+  /* Lightweight static CRT glow on mobile */
   .crt-glow {
-    box-shadow: none;
+    box-shadow: inset 0 0 40px rgba(0, 170, 255, 0.08);
   }
 }
