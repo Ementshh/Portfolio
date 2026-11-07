@@ -19,7 +19,7 @@ const config: Config = {
         'tv-accent': '#2a2a2a',
       },
       fontFamily: {
-        'crt': ['VT323', 'monospace'],
+        'crt': ['var(--font-vt323)', 'VT323', 'monospace'],
       },
       animation: {
         'scanline': 'scanline 8s linear infinite',

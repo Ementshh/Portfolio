@@ -1,19 +1,21 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import dynamic from "next/dynamic";
 import CRTOverlay from "@/components/crt/CRTOverlay";
 import TVMenu, { MenuSection } from "@/components/menu/TVMenu";
 import MenuWindow from "@/components/menu/MenuWindow";
 import HomeScreen from "@/components/sections/HomeScreen";
-import AboutMe from "@/components/sections/AboutMe";
-import Experiences from "@/components/sections/Experiences";
-import Projects from "@/components/sections/Projects";
-import Contact from "@/components/sections/Contact";
 import { AudioProvider, useAudio } from "@/components/audio/AudioContext";
 import MuteButton from "@/components/audio/MuteButton";
 import { ThemeProvider } from "@/components/theme/ThemeContext";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 import { useIsMobile } from "@/hooks/useMediaQuery";
+
+const AboutMe = dynamic(() => import("@/components/sections/AboutMe"));
+const Experiences = dynamic(() => import("@/components/sections/Experiences"));
+const Projects = dynamic(() => import("@/components/sections/Projects"));
+const Contact = dynamic(() => import("@/components/sections/Contact"));
 
 type WindowSection = Exclude<MenuSection, "home">;
 
