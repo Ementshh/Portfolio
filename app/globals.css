@@ -48,15 +48,19 @@ body {
   }
 }
 
+/* Stepped random jumps via steps(1, end) so the raster tile never slides linearly */
 @keyframes crt-static {
   0%, 100% { transform: translate3d(0, 0, 0); }
-  20% { transform: translate3d(-40px, 20px, 0); }
-  40% { transform: translate3d(30px, -35px, 0); }
-  60% { transform: translate3d(-25px, -15px, 0); }
-  80% { transform: translate3d(35px, 25px, 0); }
+  12.5% { transform: translate3d(-48px, 24px, 0); }
+  25% { transform: translate3d(36px, -42px, 0); }
+  37.5% { transform: translate3d(-28px, -18px, 0); }
+  50% { transform: translate3d(44px, 32px, 0); }
+  62.5% { transform: translate3d(-52px, -36px, 0); }
+  75% { transform: translate3d(22px, 48px, 0); }
+  87.5% { transform: translate3d(-34px, 14px, 0); }
 }
 
-/* Scanlines effect */
+/* Static horizontal scanlines effect */
 .scanlines::before {
   content: "";
   position: absolute;
@@ -72,7 +76,7 @@ body {
   z-index: 10;
 }
 
-/* Moving scanline */
+/* Moving scanline refresh bar (GPU-composited via translate3d) */
 .scanlines::after {
   content: "";
   position: absolute;
@@ -82,7 +86,7 @@ body {
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(0, 170, 255, 0.05) 50%,
+    rgba(0, 170, 255, 0.07) 50%,
     transparent 100%
   );
   height: 120px;
@@ -92,7 +96,39 @@ body {
   will-change: transform;
 }
 
-/* CRT screen glow */
+/* Screen static noise - GPU-composited raster PNG tile shifted via translate3d */
+.static-noise {
+  position: absolute;
+  inset: -64px;
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  animation: crt-static 0.4s steps(1, end) infinite;
+  pointer-events: none;
+  z-index: 12;
+  will-change: transform;
+}
+
+/* Single merged layer for CRT curvature vignette, phosphor glow & glass reflection (no heavy box-shadow) */
+.crt-vignette {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.004) 0%,
+      transparent 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      transparent 58%,
+      rgba(0, 170, 255, 0.04) 75%,
+      rgba(0, 0, 0, 0.35) 90%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+  z-index: 13;
+}
+
+/* CRT screen glow (kept for standalone CRTScreen component) */
 .crt-glow {
   box-shadow: 
     inset 0 0 60px rgba(0, 170, 255, 0.12),
@@ -160,19 +196,6 @@ body {
   animation: flicker 0.15s infinite;
 }
 
-/* Screen static noise - GPU-composited tiled texture shifted via translate3d */
-.static-noise {
-  position: absolute;
-  inset: -60px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 160px 160px;
-  animation: crt-static 0.4s steps(5) infinite;
-  pointer-events: none;
-  z-index: 12;
-  will-change: transform;
-}
-
 /* Window border style */
 .window-border {
   border: 2px solid var(--window-border);
@@ -213,13 +236,35 @@ body {
 }
 
 /* Light mode specific overrides */
-[data-theme="light"] .scanlines::before,
-[data-theme="light"] .scanlines::after {
-  display: none;
+[data-theme="light"] .scanlines::before {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 68, 136, 0.08) 0px,
+    rgba(0, 68, 136, 0.08) 1px,
+    rgba(0, 119, 204, 0.02) 1px,
+    rgba(0, 119, 204, 0.02) 3px
+  );
 }
 
-[data-theme="light"] .static-noise {
-  display: none;
+[data-theme="light"] .scanlines::after {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 119, 204, 0.12) 50%,
+    transparent 100%
+  );
+}
+
+[data-theme="light"] .crt-vignette {
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      transparent 58%,
+      rgba(0, 119, 204, 0.06) 78%,
+      rgba(0, 50, 100, 0.18) 92%,
+      rgba(0, 35, 75, 0.28) 100%
+    );
 }
 
 [data-theme="light"] .crt-text {
@@ -254,11 +299,14 @@ body {
   background: rgba(0, 119, 204, 0.6);
 }
 
-/* Mobile performance optimizations: keep static CRT scanlines & vignette, disable continuous animations */
+/* Mobile performance optimizations: disable CRT overlay effects on mobile */
 @media (max-width: 767px) {
+  .scanlines::before,
   .scanlines::after,
-  .static-noise {
+  .static-noise,
+  .crt-vignette {
     display: none;
+    animation: none;
   }
   
   /* Simplify box shadows */
@@ -279,8 +327,8 @@ body {
     text-shadow: 0 0 8px rgba(0, 170, 255, 0.6);
   }
   
-  /* Lightweight static CRT glow on mobile */
+  /* Disable CRT glow on mobile */
   .crt-glow {
-    box-shadow: inset 0 0 40px rgba(0, 170, 255, 0.08);
+    box-shadow: none;
   }
 }

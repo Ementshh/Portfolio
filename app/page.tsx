@@ -112,8 +112,8 @@ function PortfolioContent() {
       <MuteButton />
       {/* Theme toggle - next to mute button */}
       <ThemeToggle />
-      {/* Global CRT visual effects overlay */}
-      <CRTOverlay />
+      {/* Global CRT visual effects overlay (disabled on mobile) */}
+      {!isMobile && <CRTOverlay />}
 
       {/* Mobile layout - simplified without CRT frame */}
       {isMobile ? (
@@ -131,7 +131,7 @@ function PortfolioContent() {
         </div>
       ) : (
         /* Desktop layout - full CRT frame */
-        <div className="window-border backdrop-blur-sm rounded-lg w-full max-w-4xl aspect-[4/3] flex flex-col overflow-hidden relative" style={{ backgroundColor: 'var(--window-bg)' }}>
+        <div className="window-border rounded-lg w-full max-w-4xl aspect-[4/3] flex flex-col overflow-hidden relative" style={{ backgroundColor: 'var(--window-bg)' }}>
           {/* Window title bar */}
           <div className="flex items-center justify-between px-4 py-2 border-b" style={{ borderColor: 'var(--window-border)', backgroundColor: 'var(--title-bar-bg)' }}>
             <div className="flex items-center gap-2">

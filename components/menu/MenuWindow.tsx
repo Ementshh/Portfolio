@@ -49,14 +49,14 @@ export default function MenuWindow({ title, isOpen, children, onClose, offset = 
             className={
               isMobile
                 ? "w-full h-full pointer-events-auto"
-                : "max-w-[90vw] md:max-w-3xl max-h-[80vh] w-auto pointer-events-auto"
+                : "max-w-[90vw] md:max-w-3xl max-h-[80vh] w-auto pointer-events-auto will-change-transform"
             }
           >
             <div 
               className={
                 isMobile
                   ? "window-border rounded-t-lg flex flex-col overflow-hidden h-full"
-                  : "window-border backdrop-blur-sm rounded-lg flex flex-col overflow-hidden max-h-[80vh]"
+                  : "window-border rounded-lg flex flex-col overflow-hidden max-h-[80vh]"
               }
               style={{ backgroundColor: 'var(--window-bg)' }}
               onPointerDown={onWindowClick}
